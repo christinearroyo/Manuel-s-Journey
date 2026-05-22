@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://g1cmgisdjg4t"]
+
+[ext_resource type="Texture2D" uid="uid://c8h848sftya3a" path="res://assets/sprites/mm-crawl.png" id="1_5o784"]
+[ext_resource type="Script" uid="uid://bci8tlt01r1r1" path="res://scripts/boss_slime.gd" id="1_64n04"]
+[ext_resource type="PackedScene" uid="uid://x2441twe6jak" path="res://scenes/killzone.tscn" id="3_7lci5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lci5"]
+atlas = ExtResource("1_5o784")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vd2mp"]
+atlas = ExtResource("1_5o784")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3e0i"]
+atlas = ExtResource("1_5o784")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vp13"]
+atlas = ExtResource("1_5o784")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrocv"]
+atlas = ExtResource("1_5o784")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qxv5v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lci5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vd2mp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3e0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vp13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrocv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vd2mp"]
+size = Vector2(1.0000086, 23.998652)
+
+[node name="boss slime" type="Area2D" unique_id=1190826412]
+script = ExtResource("1_64n04")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2064174315]
+position = Vector2(0, -21)
+sprite_frames = SubResource("SpriteFrames_qxv5v")
+autoplay = "default"
+
+[node name="Killzone" parent="." unique_id=92160326 instance=ExtResource("3_7lci5")]
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=177477198]
+position = Vector2(0.0003413774, -0.49999607)
+rotation = -1.5714788
+scale = Vector2(0.99999905, 0.99999905)
+shape = SubResource("RectangleShape2D_vd2mp")
+
+[node name="Timer" type="Timer" parent="." unique_id=90373436]
+
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=2020484064]
+position = Vector2(0, -3)
+target_position = Vector2(30, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1724461146]
+position = Vector2(0, -3)
+scale = Vector2(1, 1.0070345)
+target_position = Vector2(-30, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

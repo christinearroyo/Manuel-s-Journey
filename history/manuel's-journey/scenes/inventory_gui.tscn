@@ -1,0 +1,159 @@
+[gd_scene format=3 uid="uid://31dh5rcy0po6"]
+
+[ext_resource type="Script" uid="uid://df0fh3hp580f3" path="res://scripts/inventory_gui.gd" id="1_ba86g"]
+[ext_resource type="Texture2D" uid="uid://dbwcn4wtaw540" path="res://assets/sprites/Inventory UI/InventoryRect.png" id="2_akoca"]
+[ext_resource type="PackedScene" uid="uid://c31mj4w7kne2e" path="res://scenes/slot_gui.tscn" id="3_ba86g"]
+
+[node name="InventoryGUI" type="Control" unique_id=1107150642]
+custom_minimum_size = Vector2(304, 136)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 304.0
+offset_bottom = 136.0
+script = ExtResource("1_ba86g")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=269547389]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 0
+offset_right = 304.0
+offset_bottom = 136.0
+texture = ExtResource("2_akoca")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="GridContainer" type="GridContainer" parent="NinePatchRect" unique_id=1001984082]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -40.0
+offset_right = 68.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 10
+
+[node name="SlotGUI" parent="NinePatchRect/GridContainer" unique_id=1260171351 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI2" parent="NinePatchRect/GridContainer" unique_id=1482211590 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI3" parent="NinePatchRect/GridContainer" unique_id=2092946216 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI4" parent="NinePatchRect/GridContainer" unique_id=339242386 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI5" parent="NinePatchRect/GridContainer" unique_id=595487784 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI6" parent="NinePatchRect/GridContainer" unique_id=1672376548 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI7" parent="NinePatchRect/GridContainer" unique_id=222815836 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI8" parent="NinePatchRect/GridContainer" unique_id=2142466012 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI9" parent="NinePatchRect/GridContainer" unique_id=1962355195 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI10" parent="NinePatchRect/GridContainer" unique_id=978922692 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI11" parent="NinePatchRect/GridContainer" unique_id=1581003366 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI12" parent="NinePatchRect/GridContainer" unique_id=1794013663 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI13" parent="NinePatchRect/GridContainer" unique_id=540401948 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI14" parent="NinePatchRect/GridContainer" unique_id=1501504264 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI15" parent="NinePatchRect/GridContainer" unique_id=1374868902 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI16" parent="NinePatchRect/GridContainer" unique_id=172713531 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI17" parent="NinePatchRect/GridContainer" unique_id=582937231 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI18" parent="NinePatchRect/GridContainer" unique_id=242674734 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI19" parent="NinePatchRect/GridContainer" unique_id=218243091 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI20" parent="NinePatchRect/GridContainer" unique_id=1103259142 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI21" parent="NinePatchRect/GridContainer" unique_id=1246488345 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI22" parent="NinePatchRect/GridContainer" unique_id=1610265940 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI23" parent="NinePatchRect/GridContainer" unique_id=1013680717 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI24" parent="NinePatchRect/GridContainer" unique_id=438429479 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI25" parent="NinePatchRect/GridContainer" unique_id=992011399 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI26" parent="NinePatchRect/GridContainer" unique_id=691019586 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI27" parent="NinePatchRect/GridContainer" unique_id=1507049814 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI28" parent="NinePatchRect/GridContainer" unique_id=365460012 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI29" parent="NinePatchRect/GridContainer" unique_id=1919959989 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI30" parent="NinePatchRect/GridContainer" unique_id=890757592 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI31" parent="NinePatchRect/GridContainer" unique_id=1003987437 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI32" parent="NinePatchRect/GridContainer" unique_id=386410311 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI33" parent="NinePatchRect/GridContainer" unique_id=530094161 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI34" parent="NinePatchRect/GridContainer" unique_id=1492082968 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI35" parent="NinePatchRect/GridContainer" unique_id=1095163020 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI36" parent="NinePatchRect/GridContainer" unique_id=226518087 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI37" parent="NinePatchRect/GridContainer" unique_id=1547067522 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI38" parent="NinePatchRect/GridContainer" unique_id=1358406407 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI39" parent="NinePatchRect/GridContainer" unique_id=536909915 instance=ExtResource("3_ba86g")]
+layout_mode = 2
+
+[node name="SlotGUI40" parent="NinePatchRect/GridContainer" unique_id=711533127 instance=ExtResource("3_ba86g")]
+layout_mode = 2

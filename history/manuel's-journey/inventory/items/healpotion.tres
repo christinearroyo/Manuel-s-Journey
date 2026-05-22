@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://b54ldi4j6r3bf"]
+
+[ext_resource type="Script" uid="uid://7r5hnp35cssl" path="res://inventory/inventoryItems.gd" id="1_vjaut"]
+[ext_resource type="Texture2D" uid="uid://d201awl0n38em" path="res://assets/sprites/Inventory UI/healpotion.png" id="2_w8aru"]
+
+[resource]
+script = ExtResource("1_vjaut")
+name = "healpotion"
+texture = ExtResource("2_w8aru")
+metadata/_custom_type_script = "uid://7r5hnp35cssl"
