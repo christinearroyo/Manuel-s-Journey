@@ -289,6 +289,7 @@ script = ExtResource("1_r88vc")
 position = Vector2(0, -79)
 sprite_frames = SubResource("SpriteFrames_qemma")
 autoplay = "default"
+frame = 27
 
 [node name="Killzone" parent="." unique_id=92160326 instance=ExtResource("3_8cb7x")]
 scale = Vector2(1.0000001, 1.0000001)
