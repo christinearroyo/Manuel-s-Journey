@@ -385,7 +385,7 @@ position = Vector2(-1338, 1146)
 scale = Vector2(1.1137143, 1.3634322)
 
 [node name="Player" parent="." unique_id=1787603029 instance=ExtResource("1_uwrxv")]
-position = Vector2(-1256, 1040)
+position = Vector2(576, 304)
 
 [node name="ScoreLabel3" type="Label" parent="Player" unique_id=1981883659]
 offset_left = 221.0

@@ -72,14 +72,6 @@ region = Rect2(600, 700, 100, 100)
 atlas = ExtResource("1_gnfrb")
 region = Rect2(700, 700, 100, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_552d6"]
-atlas = ExtResource("1_gnfrb")
-region = Rect2(800, 700, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ovbf4"]
-atlas = ExtResource("1_gnfrb")
-region = Rect2(900, 700, 100, 100)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_knqip"]
 animations = [{
 "frames": [{
@@ -133,12 +125,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0vgwy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_552d6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ovbf4")
 }],
 "loop": true,
 "name": &"default",
@@ -152,17 +138,26 @@ radius = 4.2462883
 script = ExtResource("1_6fya6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1343093169]
-position = Vector2(0, -20)
+position = Vector2(0, -34)
 sprite_frames = SubResource("SpriteFrames_knqip")
 autoplay = "default"
-frame = 15
-frame_progress = 0.06426303
+frame = 16
 
 [node name="Killzone" parent="." unique_id=92160326 instance=ExtResource("3_w3tsi")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=1997938195]
-position = Vector2(40.999996, -33)
-scale = Vector2(0.93703926, 0.97322917)
+position = Vector2(40, -46.000004)
+scale = Vector2(0.93703926, 0.8247871)
+shape = SubResource("CircleShape2D_r0o18")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Killzone" unique_id=707477862]
+position = Vector2(-18, -5)
+scale = Vector2(1.2502815, 1.1005046)
+shape = SubResource("CircleShape2D_r0o18")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Killzone" unique_id=1177794084]
+position = Vector2(15.999996, -5)
+scale = Vector2(1.2502815, 1.1005046)
 shape = SubResource("CircleShape2D_r0o18")
 
 [node name="Timer" type="Timer" parent="." unique_id=301256413]
