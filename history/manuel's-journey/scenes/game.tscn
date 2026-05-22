@@ -385,26 +385,14 @@ position = Vector2(-1338, 1146)
 scale = Vector2(1.1137143, 1.3634322)
 
 [node name="Player" parent="." unique_id=1787603029 instance=ExtResource("1_uwrxv")]
-position = Vector2(576, 304)
-
-[node name="ScoreLabel3" type="Label" parent="Player" unique_id=1981883659]
-offset_left = 221.0
-offset_top = -160.0
-offset_right = 277.0
-offset_bottom = -152.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_0tnpc")
-theme_override_font_sizes/font_size = 7
-text = "Coins: 0"
-horizontal_alignment = 1
-autowrap_mode = 2
+position = Vector2(-1008, 1044)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=170359459]
 position = Vector2(0, -1)
 scale = Vector2(3.6755552, 39.963505)
-zoom = Vector2(3, 3)
+zoom = Vector2(2, 2)
 limit_right = 1000000
-limit_bottom = 1344
+limit_bottom = 2000
 
 [node name="Platforms" type="Node" parent="." unique_id=1353988901]
 
