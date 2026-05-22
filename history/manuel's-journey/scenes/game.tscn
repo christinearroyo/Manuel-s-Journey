@@ -381,7 +381,7 @@ position = Vector2(141.99998, 407.00003)
 scale = Vector2(1.1258119, 1.1075423)
 
 [node name="hell boss" parent="Boss" unique_id=1785547577 instance=ExtResource("16_ssvqc")]
-position = Vector2(-1162.0001, 1146)
+position = Vector2(-1698.0001, 1146)
 scale = Vector2(1.1137143, 1.3634322)
 
 [node name="Player" parent="." unique_id=1787603029 instance=ExtResource("1_uwrxv")]
