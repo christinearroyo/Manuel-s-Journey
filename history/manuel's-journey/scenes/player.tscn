@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://bby1qllub3jsy" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Resource" uid="uid://srnuju6ictf3" path="res://inventory/playerInventory.tres" id="2_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://batmjtec6yiom" path="res://assets/sprites/Health Bar/Pixel Bar Starter Pack/0-Health_Bar(Sheet).png" id="4_dqkch"]
-[ext_resource type="FontFile" uid="uid://csjhmooj4ehqh" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="5_qlg0r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("1_3vyb7")
@@ -260,18 +259,71 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qlg0r"]
+radius = 6.0
+height = 18.0
+
+[sub_resource type="Animation" id="Animation_qlg0r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tuyoq"]
+resource_name = "hurtBlink"
+length = 0.4
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0002, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 0.5176471), Color(1, 0, 0, 0.5176471), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fjrip"]
+_data = {
+&"RESET": SubResource("Animation_qlg0r"),
+&"hurtBlink": SubResource("Animation_tuyoq")
+}
+
 [node name="Player" type="CharacterBody2D" unique_id=1787603029]
 z_index = 5
 collision_layer = 2
 script = ExtResource("1_g2els")
+knockbackPower = 3000
 inventory = ExtResource("2_qhqgy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=83173085]
+clip_children = 2
 sprite_frames = SubResource("SpriteFrames_tuyoq")
 animation = &"jumping"
 autoplay = "idle"
 
+[node name="ColorRect" type="ColorRect" parent="AnimatedSprite2D" unique_id=2017991187]
+offset_left = -20.0
+offset_top = -19.0
+offset_right = 20.0
+offset_bottom = 21.0
+color = Color(1, 0, 0, 0)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=654601335]
+visible = false
 position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_g2els")
 
@@ -280,14 +332,20 @@ position = Vector2(2.3841858e-07, -9)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_md1ol")
 
-[node name="ScoreLabel3" type="Label" parent="." unique_id=1803444261]
-offset_left = 221.0
-offset_top = -160.0
-offset_right = 277.0
-offset_bottom = -152.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("5_qlg0r")
-theme_override_font_sizes/font_size = 7
-text = "Coins: 0"
-horizontal_alignment = 1
-autowrap_mode = 2
+[node name="hurtBox" type="Area2D" parent="." unique_id=1556022553]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBox" unique_id=1227052081]
+visible = false
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_qlg0r")
+
+[node name="Effects" type="AnimationPlayer" parent="." unique_id=2078885634]
+libraries/ = SubResource("AnimationLibrary_fjrip")
+
+[node name="hurtTimer" type="Timer" parent="." unique_id=1601224557]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="area_entered" from="hurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="area_exited" from="hurtBox" to="." method="_on_hurt_box_area_exited"]

@@ -4,9 +4,23 @@ extends CharacterBody2D
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
 
+signal healthChanged
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var effects = $Effects
+@onready var hurtTimer = $hurtTimer
 
+@onready var currentHealth: int = maxHealth
+@export var maxHealth: int = 5
 
+@export var knockbackPower: int = 500
+
+var isHurt: bool = false
+var enemyCollisions = []
+
+func _ready():
+	effects.play("RESET")
+	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -40,8 +54,40 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
+	if !isHurt:
+		for enemyArea in enemyCollisions:
+			hurtByEnemy(enemyArea)
+	
 @export var inventory: Inventory
 
+func hurtByEnemy(area):
+	currentHealth -= 1
+	if currentHealth <= 0:
+		currentHealth = 0
+		
+	healthChanged.emit(currentHealth)
+	isHurt = true
+		
+	knockback(area.get_parent().velocity)
+	effects.play("hurtBlink")
+	hurtTimer.start()
+	await hurtTimer.timeout
+	effects.play("RESET")
+	isHurt = false
+
 func _on_hurt_box_area_entered(area):
-	if area.has_method("collect"):
-		area.collect()
+	if area.name == "hitBox":
+		enemyCollisions.append(area)
+		
+func knockback(enemyVelocity):
+	var knockbackDirection = (enemyVelocity - velocity).normalized() * knockbackPower
+	velocity = knockbackDirection
+	print_debug(velocity)
+	print_debug(position)
+	move_and_slide()
+	print_debug(position)
+	print_debug("  ")
+
+
+func _on_hurt_box_area_exited(area: Area2D) -> void:
+	enemyCollisions.erase(area)
