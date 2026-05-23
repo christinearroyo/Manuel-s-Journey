@@ -8,6 +8,8 @@ signal closed
 @onready var slots: Array =$NinePatchRect/GridContainer.get_children()
 
 var itemInHand: ItemStackGui
+var oldIndex: int = -1
+var locked: bool = false
 
 func _ready():
 	connectSlots()
@@ -54,17 +56,30 @@ func close():
 	closed.emit()
 	
 func onSlotClicked(slot):
-	if slot.isEmpty() && itemInHand:
+	if locked: return
+	
+	if slot.isEmpty():
+		if !itemInHand: return
+		
 		insertItemInSlot(slot)
 		return
 	
 	if !itemInHand:
 		takeItemFromSlot(slot)
+		return
+	
+	if slot.itemStackGui.inventorySlot.item.name == itemInHand.inventorySlot.item.name:
+		stackItems(slot)
+		return
+	
+	swapItems(slot)
 
 func takeItemFromSlot(slot):
 	itemInHand = slot.takeItem()
 	add_child(itemInHand)
 	updateItemInHand()
+	
+	oldIndex = slot.index
 
 func insertItemInSlot(slot):
 	var item = itemInHand
@@ -73,12 +88,74 @@ func insertItemInSlot(slot):
 	itemInHand = null
 	
 	slot.insert(item)
+	
+	oldIndex = -1
+
+func swapItems(slot):
+	var tempItem = slot.takeItem()
+	var tempIndex = slot.index
+	
+	insertItemInSlot(slot)
+	
+	itemInHand = tempItem
+	add_child(itemInHand)
+	updateItemInHand()
+	
+	oldIndex = tempIndex
+
+func stackItems(slot):
+	var slotItem: ItemStackGui = slot.itemStackGui
+	var maxAmount = slotItem.inventorySlot.item.maxAmountPrStack
+	var totalAmount = slotItem.inventorySlot.amount + itemInHand.inventorySlot.amount
+	
+	if slotItem.inventorySlot.amount == maxAmount:
+		swapItems(slot)
+		return
+		
+	if totalAmount <= maxAmount:
+		slotItem.inventorySlot.amount = totalAmount
+		remove_child(itemInHand)
+		itemInHand = null
+		oldIndex = -1
+	else:
+		slotItem.inventorySlot.amount = maxAmount
+		itemInHand.inventorySlot.amount = totalAmount - maxAmount
+	
+	slotItem.update()
+	if itemInHand: itemInHand.update()
 
 func updateItemInHand():
 	if !itemInHand: return
 	itemInHand.global_position = get_global_mouse_position() - itemInHand.size / 2
 	
+func putItemBack():
+	locked = true
+	
+	if !slots[oldIndex].isEmpty():
+		var emptySlots = slots.filter(func(s): return s.isEmpty())
+		
+		if emptySlots.is_empty():
+			locked = false
+			return
+		
+		oldIndex = emptySlots[0].index
+	
+	var targetSlot = slots[oldIndex]
+	
+	var tween = create_tween()
+	var targetPosition = targetSlot.global_position + targetSlot.size / 2
+	
+	tween.tween_property(itemInHand, "global_position", targetPosition, 0.15)
+	
+	await tween.finished
+	
+	insertItemInSlot(targetSlot)
+	locked = false
+
 func _input(event):
+	if itemInHand && !locked && Input.is_action_just_pressed("rightClick"):
+		putItemBack()
+		
 	updateItemInHand()
 	
 	
