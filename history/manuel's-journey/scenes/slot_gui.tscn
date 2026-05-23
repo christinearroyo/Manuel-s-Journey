@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bngunkqie6ejb" path="res://scripts/slot_gui.gd" id="1_inl3j"]
 [ext_resource type="Texture2D" uid="uid://bilg1x0kcrg7l" path="res://assets/sprites/Inventory UI/inventorySlot.png" id="1_uwo2y"]
+[ext_resource type="FontFile" uid="uid://d086vnvxnrv4" path="res://assets/fonts/PixelOperator8.ttf" id="3_78og1"]
 
 [node name="SlotGUI" type="Panel" unique_id=1260171351]
 self_modulate = Color(1, 1, 1, 0)
@@ -26,3 +27,17 @@ offset_bottom = 24.0
 layout_mode = 2
 
 [node name="item" type="Sprite2D" parent="CenterContainer/Panel" unique_id=977244127]
+
+[node name="Label" type="Label" parent="CenterContainer/Panel" unique_id=1651612080]
+custom_minimum_size = Vector2(14, 8)
+layout_mode = 0
+offset_left = -4.0
+offset_top = 2.0
+offset_right = 10.0
+offset_bottom = 10.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.64705884)
+theme_override_fonts/font = ExtResource("3_78og1")
+theme_override_font_sizes/font_size = 8
+text = "99"
+horizontal_alignment = 2
