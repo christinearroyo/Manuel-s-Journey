@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://1vnxwt3nemtu"]
 
 [ext_resource type="Script" uid="uid://cy68l34afuvkm" path="res://collectables/collectable.gd" id="1_ti8a4"]
+[ext_resource type="Resource" uid="uid://b54ldi4j6r3bf" path="res://inventory/items/healpotion.tres" id="2_llfh3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_llfh3"]
 resource_local_to_scene = true
 
 [node name="Collectable" type="Area2D" unique_id=394203978]
 script = ExtResource("1_ti8a4")
+itemRes = ExtResource("2_llfh3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1653535943]
 shape = SubResource("RectangleShape2D_llfh3")
