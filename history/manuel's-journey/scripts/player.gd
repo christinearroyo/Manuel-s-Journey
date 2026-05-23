@@ -8,6 +8,7 @@ signal healthChanged
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var effects = $Effects
+@onready var hurtBox = $hurtBox
 @onready var hurtTimer = $hurtTimer
 
 @onready var currentHealth: int = maxHealth
@@ -16,7 +17,6 @@ signal healthChanged
 @export var knockbackPower: int = 500
 
 var isHurt: bool = false
-var enemyCollisions = []
 
 func _ready():
 	effects.play("RESET")
@@ -55,8 +55,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	if !isHurt:
-		for enemyArea in enemyCollisions:
-			hurtByEnemy(enemyArea)
+		for area in hurtBox.get_overlapping_areas():
+			if area.name == "hitBox":
+				hurtByEnemy(area)
 	
 @export var inventory: Inventory
 
@@ -76,8 +77,8 @@ func hurtByEnemy(area):
 	isHurt = false
 
 func _on_hurt_box_area_entered(area):
-	if area.name == "hitBox":
-		enemyCollisions.append(area)
+	if area.has_method("collect"):
+		area.collect()
 		
 func knockback(enemyVelocity):
 	var knockbackDirection = (enemyVelocity - velocity).normalized() * knockbackPower
@@ -89,5 +90,5 @@ func knockback(enemyVelocity):
 	print_debug("  ")
 
 
-func _on_hurt_box_area_exited(area: Area2D) -> void:
-	enemyCollisions.erase(area)
+func _on_hurt_box_area_exited(area: Area2D) -> void: 
+	pass
