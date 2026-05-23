@@ -386,6 +386,7 @@ scale = Vector2(1.1137143, 1.3634322)
 
 [node name="Player" parent="." unique_id=1787603029 instance=ExtResource("1_uwrxv")]
 position = Vector2(-10, -5)
+knockbackPower = 500
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=170359459]
 scale = Vector2(3.6755552, 39.963505)
