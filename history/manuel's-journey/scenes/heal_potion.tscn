@@ -3,14 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://1vnxwt3nemtu" path="res://scenes/collectable.tscn" id="1_p1y2b"]
 [ext_resource type="Texture2D" uid="uid://d201awl0n38em" path="res://assets/sprites/Inventory UI/healpotion.png" id="2_ia001"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3dvrr"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1y2b"]
 resource_local_to_scene = true
 size = Vector2(16, 16)
 
 [node name="HealPotion" unique_id=394203978 instance=ExtResource("1_p1y2b")]
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=1653535943]
-shape = SubResource("RectangleShape2D_3dvrr")
+shape = SubResource("RectangleShape2D_p1y2b")
 
 [node name="Sprite2D" parent="." index="1" unique_id=703721378]
 texture = ExtResource("2_ia001")

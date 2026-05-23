@@ -7,6 +7,7 @@ signal closed
 @onready var slots: Array =$NinePatchRect/GridContainer.get_children()
 
 func _ready():
+	inventory.updated.connect(update)
 	update()
 
 func update():

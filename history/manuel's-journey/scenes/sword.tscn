@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ceahnnw1uix5q"]
 
 [ext_resource type="Script" uid="uid://c554n8eo4f5kr" path="res://scenes/sword.gd" id="1_n355p"]
+[ext_resource type="Resource" uid="uid://r3imv02es082" path="res://inventory/items/sword.tres" id="2_s4ec8"]
 [ext_resource type="Texture2D" uid="uid://taox0gvx2koi" path="res://assets/sprites/Inventory UI/sword.png" id="3_1yp6w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_llfh3"]
@@ -47,6 +48,7 @@ _data = {
 
 [node name="Sword" type="Area2D" unique_id=394203978]
 script = ExtResource("1_n355p")
+itemRes = ExtResource("2_s4ec8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1653535943]
 shape = SubResource("RectangleShape2D_llfh3")
