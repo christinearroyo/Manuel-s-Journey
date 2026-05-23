@@ -14,3 +14,4 @@ func add_point():
 	score_label.text = "You collected " + str(score) + " coins."
 	score_label2.text = "You collected " + str(score) + " coins."
 	score_label4.text = "\n\n Coins: " + str(score)
+	
