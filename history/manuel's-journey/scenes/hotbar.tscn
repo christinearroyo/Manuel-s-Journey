@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bjha4ccxqvacs"]
+
+[ext_resource type="Script" uid="uid://bupn0uknbc2xe" path="res://scenes/hotbar.gd" id="1_4qkdb"]
+[ext_resource type="PackedScene" uid="uid://cwatmqfxjgs0i" path="res://scenes/hotbar_slot.tscn" id="1_yj1xu"]
+
+[node name="Hotbar" type="HBoxContainer" unique_id=397404039]
+custom_minimum_size = Vector2(276, 25)
+offset_right = 276.0
+offset_bottom = 25.0
+script = ExtResource("1_4qkdb")
+
+[node name="HotbarGui" parent="." unique_id=608783883 instance=ExtResource("1_yj1xu")]
+layout_mode = 2
+
+[node name="HotbarGui2" parent="." unique_id=1548079987 instance=ExtResource("1_yj1xu")]
+layout_mode = 2
+
+[node name="HotbarGui3" parent="." unique_id=2024305342 instance=ExtResource("1_yj1xu")]
+layout_mode = 2
+
+[node name="HotbarGui4" parent="." unique_id=209282343 instance=ExtResource("1_yj1xu")]
+layout_mode = 2
+
+[node name="HotbarGui5" parent="." unique_id=211476433 instance=ExtResource("1_yj1xu")]
+layout_mode = 2
+
+[node name="HotbarGui6" parent="." unique_id=1665423564 instance=ExtResource("1_yj1xu")]
+layout_mode = 2
+
+[node name="HotbarGui7" parent="." unique_id=1023051410 instance=ExtResource("1_yj1xu")]
+layout_mode = 2
+
+[node name="HotbarGui8" parent="." unique_id=213047491 instance=ExtResource("1_yj1xu")]
+layout_mode = 2
+
+[node name="HotbarGui9" parent="." unique_id=884800937 instance=ExtResource("1_yj1xu")]
+layout_mode = 2
+
+[node name="HotbarGui10" parent="." unique_id=1581074369 instance=ExtResource("1_yj1xu")]
+layout_mode = 2

@@ -5,161 +5,87 @@ signal closed
 
 @onready var inventory: Inventory = preload("res://inventory/playerInventory.tres")
 @onready var ItemStackGuiClass = preload("res://scenes/itemsStackGui.tscn")
-@onready var slots: Array =$NinePatchRect/GridContainer.get_children()
 
-var itemInHand: ItemStackGui
-var oldIndex: int = -1
-var locked: bool = false
+@onready var hotbar_slots = $NinePatchRect/HBoxContainer.get_children()
+@onready var inventory_slots = $NinePatchRect/GridContainer.get_children()
+
+@onready var slots = hotbar_slots + inventory_slots
+
+var item_in_hand = null
+var old_index = -1
+
+var mouse_item_gui: ItemStackGui
+
+var is_open = false
+
 
 func _ready():
-	connectSlots()
-	inventory.updated.connect(update)
-	update()
+	connect_slots()
+	inventory.updated.connect(update_slots)
+	update_slots()
 
-func connectSlots():
+
+func connect_slots():
 	for i in range(slots.size()):
-		var slot = slots[i]
-		slot.index = i
-		
-		var callable = Callable(onSlotClicked)
-		callable = callable.bind(slot)
-		slot.pressed.connect(callable)
+		slots[i].index = i
+		slots[i].inventory_gui = self
 
-func update():
-	for i in range(min(inventory.slots.size(), slots.size())):
-		var inventorySlot: InventorySlot = inventory.slots[i]
-		var itemStackGui: ItemStackGui = slots[i].itemStackGui
-		
-		if !inventorySlot.item:
-			if itemStackGui:
-				itemStackGui.queue_free()
-				slots[i].itemStackGui = null
+
+func update_slots():
+
+	for i in range(slots.size()):
+
+		var slot_data = inventory.slots[i]
+
+		if slot_data == null or slot_data.item == null:
+
+			if slots[i].itemStackGui:
+				slots[i].takeItem()
+
 			continue
-		
-		if !itemStackGui:
-			itemStackGui = ItemStackGuiClass.instantiate()
-			slots[i].insert(itemStackGui)
-		
-		itemStackGui.inventorySlot = inventorySlot
-		itemStackGui.update()
-	
-var isOpen: bool = false
-# Called when the node enters the scene tree for the first time.
+
+		if !slots[i].itemStackGui:
+
+			var gui = ItemStackGuiClass.instantiate()
+			slots[i].insert(gui)
+
+		slots[i].itemStackGui.inventorySlot = slot_data
+		slots[i].itemStackGui.update()
+
+
+func set_mouse_item(slot: InventorySlot):
+
+	if mouse_item_gui:
+		mouse_item_gui.queue_free()
+		mouse_item_gui = null
+
+	if slot == null or slot.item == null:
+		return
+
+	mouse_item_gui = ItemStackGuiClass.instantiate()
+	add_child(mouse_item_gui)
+
+	mouse_item_gui.inventorySlot = slot
+	mouse_item_gui.update()
+
+	mouse_item_gui.z_index = 999
+
+
+func _process(delta):
+
+	if mouse_item_gui:
+		mouse_item_gui.global_position = get_viewport().get_mouse_position()
+
+
 func open():
 	visible = true
-	isOpen = true
+	is_open = true
 	opened.emit()
-	
+
+
 func close():
 	visible = false
-	isOpen = false
+	is_open = false
 	closed.emit()
-	
-func onSlotClicked(slot):
-	if locked: return
-	
-	if slot.isEmpty():
-		if !itemInHand: return
-		
-		insertItemInSlot(slot)
-		return
-	
-	if !itemInHand:
-		takeItemFromSlot(slot)
-		return
-	
-	if slot.itemStackGui.inventorySlot.item.name == itemInHand.inventorySlot.item.name:
-		stackItems(slot)
-		return
-	
-	swapItems(slot)
-
-func takeItemFromSlot(slot):
-	itemInHand = slot.takeItem()
-	add_child(itemInHand)
-	updateItemInHand()
-	
-	oldIndex = slot.index
-
-func insertItemInSlot(slot):
-	var item = itemInHand
-	
-	remove_child(itemInHand)
-	itemInHand = null
-	
-	slot.insert(item)
-	
-	oldIndex = -1
-
-func swapItems(slot):
-	var tempItem = slot.takeItem()
-	var tempIndex = slot.index
-	
-	insertItemInSlot(slot)
-	
-	itemInHand = tempItem
-	add_child(itemInHand)
-	updateItemInHand()
-	
-	oldIndex = tempIndex
-
-func stackItems(slot):
-	var slotItem: ItemStackGui = slot.itemStackGui
-	var maxAmount = slotItem.inventorySlot.item.maxAmountPrStack
-	var totalAmount = slotItem.inventorySlot.amount + itemInHand.inventorySlot.amount
-	
-	if slotItem.inventorySlot.amount == maxAmount:
-		swapItems(slot)
-		return
-		
-	if totalAmount <= maxAmount:
-		slotItem.inventorySlot.amount = totalAmount
-		remove_child(itemInHand)
-		itemInHand = null
-		oldIndex = -1
-	else:
-		slotItem.inventorySlot.amount = maxAmount
-		itemInHand.inventorySlot.amount = totalAmount - maxAmount
-	
-	slotItem.update()
-	if itemInHand: itemInHand.update()
-
-func updateItemInHand():
-	if !itemInHand: return
-	itemInHand.global_position = get_global_mouse_position() - itemInHand.size / 2
-	
-func putItemBack():
-	locked = true
-	
-	if !slots[oldIndex].isEmpty():
-		var emptySlots = slots.filter(func(s): return s.isEmpty())
-		
-		if emptySlots.is_empty():
-			locked = false
-			return
-		
-		oldIndex = emptySlots[0].index
-	
-	var targetSlot = slots[oldIndex]
-	
-	var tween = create_tween()
-	var targetPosition = targetSlot.global_position + targetSlot.size / 2
-	
-	tween.tween_property(itemInHand, "global_position", targetPosition, 0.15)
-	
-	await tween.finished
-	
-	insertItemInSlot(targetSlot)
-	locked = false
-
-func _input(event):
-	if itemInHand && !locked && Input.is_action_just_pressed("rightClick"):
-		putItemBack()
-		
-	updateItemInHand()
-	
-	
-	
-	
 	
 	

@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://31dh5rcy0po6" path="res://scenes/inventory_gui.tscn" id="23_bt5mj"]
 [ext_resource type="Script" uid="uid://chjfnm7xpm4yy" path="res://scripts/canvas_layer.gd" id="23_e1j6l"]
 [ext_resource type="PackedScene" uid="uid://dxqupul6mk5s8" path="res://scenes/hearts_container.tscn" id="27_qnb83"]
+[ext_resource type="PackedScene" uid="uid://bjha4ccxqvacs" path="res://scenes/hotbar.tscn" id="32_wljb1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("2_yqjtg")
@@ -834,6 +835,12 @@ text = "
 Coins: 0"
 horizontal_alignment = 1
 autowrap_mode = 2
+
+[node name="Hotbar" parent="CanvasLayer" unique_id=397404039 instance=ExtResource("32_wljb1")]
+offset_left = 9.0
+offset_top = 6.0
+offset_right = 285.0
+offset_bottom = 31.0
 
 [connection signal="body_entered" from="Boss/demon boss" to="Boss/boss slime" method="_on_demon_boss_body_entered"]
 [connection signal="body_entered" from="Boss/hell boss" to="Boss/hell boss" method="_on_body_entered"]
