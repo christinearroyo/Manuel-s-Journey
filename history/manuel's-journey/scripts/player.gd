@@ -9,6 +9,7 @@ var demon_boss_hit = false
 var hell_boss_hit = false
 var health = 4
 var current_direction = 1
+var hurt = false
 
 const FIREBALL = preload("uid://deplmj5qsqm0x")
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -86,6 +87,7 @@ func _physics_process(delta: float) -> void:
 		fireball.position.y = position.y - 7
 		get_parent().add_child(fireball)
 	elif Input.is_action_just_pressed("swing"):
+		sword.get_node("SwordHitbox").get_node("CollisionShape2D").disabled = false
 		if current_direction == 1:
 			animation_player.play("swing_right")
 		else:
@@ -138,6 +140,7 @@ func damaged(damage):
 		health = 0
 		animation_player.play("deathSound")
 	health_sprite.frame = health
+	get_node("Hitbox").set_deferred("Monitoring", false)
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.has_method("collect"):
@@ -164,3 +167,10 @@ func increase_health(health_increase):
 	if health > 4:
 		health = 4
 	health_sprite.frame = health
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "swing_right" or anim_name == "swing_left":
+		sword.get_node("SwordHitbox").get_node("CollisionShape2D").disabled = true
+	if anim_name == "hitSound":
+		get_node("Hitbox").set_deferred("Monitoring", true)

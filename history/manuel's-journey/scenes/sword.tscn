@@ -11,7 +11,9 @@ position = Vector2(0, -7)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1653535943]
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_k5whp")
+disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=703721378]
 rotation = 0.7853982
+scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("3_1yp6w")
