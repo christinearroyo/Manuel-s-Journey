@@ -2,39 +2,51 @@
 
 [ext_resource type="Script" uid="uid://bupn0uknbc2xe" path="res://scenes/hotbar.gd" id="1_4qkdb"]
 [ext_resource type="PackedScene" uid="uid://cwatmqfxjgs0i" path="res://scenes/hotbar_slot.tscn" id="1_yj1xu"]
+[ext_resource type="Texture2D" uid="uid://bqi6wor7iesl1" path="res://assets/sprites/Inventory UI/hotbar_selector.png" id="3_xrqkv"]
 
-[node name="Hotbar" type="HBoxContainer" unique_id=397404039]
-custom_minimum_size = Vector2(276, 25)
-offset_right = 276.0
+[node name="Hotbar" type="Panel" unique_id=1741816316 groups=["ui_hotbar"]]
+self_modulate = Color(1, 1, 1, 0)
+offset_right = 277.0
 offset_bottom = 25.0
 script = ExtResource("1_4qkdb")
 
-[node name="HotbarGui" parent="." unique_id=608783883 instance=ExtResource("1_yj1xu")]
+[node name="Container" type="HBoxContainer" parent="." unique_id=397404039]
+custom_minimum_size = Vector2(276, 25)
+layout_mode = 0
+offset_right = 276.0
+offset_bottom = 25.0
+
+[node name="HotbarGui" parent="Container" unique_id=608783883 instance=ExtResource("1_yj1xu")]
 layout_mode = 2
 
-[node name="HotbarGui2" parent="." unique_id=1548079987 instance=ExtResource("1_yj1xu")]
+[node name="HotbarGui2" parent="Container" unique_id=1548079987 instance=ExtResource("1_yj1xu")]
 layout_mode = 2
 
-[node name="HotbarGui3" parent="." unique_id=2024305342 instance=ExtResource("1_yj1xu")]
+[node name="HotbarGui3" parent="Container" unique_id=2024305342 instance=ExtResource("1_yj1xu")]
 layout_mode = 2
 
-[node name="HotbarGui4" parent="." unique_id=209282343 instance=ExtResource("1_yj1xu")]
+[node name="HotbarGui4" parent="Container" unique_id=209282343 instance=ExtResource("1_yj1xu")]
 layout_mode = 2
 
-[node name="HotbarGui5" parent="." unique_id=211476433 instance=ExtResource("1_yj1xu")]
+[node name="HotbarGui5" parent="Container" unique_id=211476433 instance=ExtResource("1_yj1xu")]
 layout_mode = 2
 
-[node name="HotbarGui6" parent="." unique_id=1665423564 instance=ExtResource("1_yj1xu")]
+[node name="HotbarGui6" parent="Container" unique_id=1665423564 instance=ExtResource("1_yj1xu")]
 layout_mode = 2
 
-[node name="HotbarGui7" parent="." unique_id=1023051410 instance=ExtResource("1_yj1xu")]
+[node name="HotbarGui7" parent="Container" unique_id=1023051410 instance=ExtResource("1_yj1xu")]
 layout_mode = 2
 
-[node name="HotbarGui8" parent="." unique_id=213047491 instance=ExtResource("1_yj1xu")]
+[node name="HotbarGui8" parent="Container" unique_id=213047491 instance=ExtResource("1_yj1xu")]
 layout_mode = 2
 
-[node name="HotbarGui9" parent="." unique_id=884800937 instance=ExtResource("1_yj1xu")]
+[node name="HotbarGui9" parent="Container" unique_id=884800937 instance=ExtResource("1_yj1xu")]
 layout_mode = 2
 
-[node name="HotbarGui10" parent="." unique_id=1581074369 instance=ExtResource("1_yj1xu")]
+[node name="HotbarGui10" parent="Container" unique_id=1581074369 instance=ExtResource("1_yj1xu")]
 layout_mode = 2
+
+[node name="Selector" type="Sprite2D" parent="." unique_id=1262681297]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("3_xrqkv")
+centered = false

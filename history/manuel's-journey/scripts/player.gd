@@ -10,30 +10,42 @@ signal healthChanged
 @onready var hurtBox = $hurtBox
 @onready var hurtTimer = $hurtTimer
 
-@onready var currentHealth: int = maxHealth
 @export var maxHealth: int = 5
+@onready var currentHealth: int = maxHealth
 
 @export var knockbackPower: int = 500
-@export var inventory: Inventory
+
+# ✅ FIXED TYPE
+@export var inventory: Inventory = Inventory.new()
+
+@onready var ui = get_tree().get_first_node_in_group("ui_inventory")
 
 var isHurt: bool = false
 var spawnPosition: Vector2
 
+
 func _ready():
-	effects.play("RESET")
-	
-	# SAVE START POSITION
-	spawnPosition = global_position
-	
-	# UPDATE HEARTS AT START
-	healthChanged.emit(currentHealth)
+	if inventory:
+		inventory.use_item.connect(use_item)
+	var hotbar = get_tree().get_first_node_in_group("ui_hotbar")
+
+	if hotbar:
+		hotbar.set_inventory(inventory)
+	var ui = get_tree().get_first_node_in_group("ui_inventory")
+
+	if ui == null:
+		print("UI NOT FOUND")
+		return
+
+	print("UI FOUND")
+
+	ui.set_inventory(inventory)
+
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
@@ -59,20 +71,18 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-	if !isHurt:
+	if not isHurt:
 		for area in hurtBox.get_overlapping_areas():
 			if area.name == "hitBox":
 				hurtByEnemy(area)
 
+
 func hurtByEnemy(area):
 	currentHealth -= 1
-	
-	if currentHealth < 0:
-		currentHealth = 0
+	currentHealth = max(currentHealth, 0)
 
 	healthChanged.emit(currentHealth)
 
-	# PLAYER DIES
 	if currentHealth == 0:
 		die()
 		return
@@ -88,21 +98,40 @@ func hurtByEnemy(area):
 	effects.play("RESET")
 	isHurt = false
 
+
 func die():
-	# RESET PLAYER POSITION
 	global_position = spawnPosition
 	currentHealth = maxHealth
 	healthChanged.emit(currentHealth)
 	velocity = Vector2.ZERO
 
+
 func _on_hurt_box_area_entered(area):
 	if area.has_method("collect"):
 		area.collect(inventory)
+
 
 func knockback(enemyVelocity):
 	var knockbackDirection = (enemyVelocity - velocity).normalized() * knockbackPower
 	velocity = knockbackDirection
 	move_and_slide()
 
-func _on_hurt_box_area_exited(area: Area2D) -> void:
-	pass
+
+func increase_health(amount: int) -> void:
+
+	currentHealth += amount
+
+	if currentHealth > maxHealth:
+		currentHealth = maxHealth
+
+	print("HEALTH:", currentHealth)
+
+	healthChanged.emit(currentHealth)
+
+
+func use_item(item):
+
+	print("PLAYER USING:", item.name)
+
+	if item:
+		item.use(self)

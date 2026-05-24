@@ -2,40 +2,59 @@ extends Resource
 class_name Inventory
 
 signal updated
+signal use_item
 
-@export var slots: Array[InventorySlot]
+@export var slot_count: int = 16
+var slots: Array[InventorySlot] = []
+
+func _init():
+	slots = []
+	for i in range(slot_count):
+		slots.append(InventorySlot.new())
 
 
 func insert(item: InventoryItem):
 
 	for slot in slots:
-		if slot != null and slot.item == item and slot.amount < item.maxAmountPrStack:
+		if slot.item == item and slot.amount < item.maxAmountPrStack:
 			slot.amount += 1
 			updated.emit()
 			return
 
 	for slot in slots:
-		if slot == null or slot.item == null:
+		if slot.is_empty():
 			slot.item = item
 			slot.amount = 1
-			updated.emit()
+
+			updated.emit() # 🔥 MUST HAPPEN HERE
 			return
 
 	updated.emit()
 
 
-func swap_slots(a: int, b: int):
-	var temp = slots[a]
-	slots[a] = slots[b]
-	slots[b] = temp
-	updated.emit()
-
-
-func set_slot(index: int, slot: InventorySlot):
-	slots[index] = slot
-	updated.emit()
-
-
 func clear_slot(index: int):
-	slots[index] = InventorySlot.new()
+	if index < 0 or index >= slots.size():
+		return
+	slots[index].clear()
+	updated.emit()
+
+
+func use_item_at_index(index: int) -> void:
+
+	if index < 0 or index >= slots.size():
+		return
+
+	var slot = slots[index]
+
+	if slot == null or slot.is_empty():
+		return
+
+	use_item.emit(slot.item)
+
+	# REMOVE ITEM AFTER USE
+	slot.amount -= 1
+
+	if slot.amount <= 0:
+		slot.clear()
+
 	updated.emit()

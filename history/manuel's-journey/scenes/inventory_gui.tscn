@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dbwcn4wtaw540" path="res://assets/sprites/Inventory UI/InventoryRect.png" id="2_akoca"]
 [ext_resource type="PackedScene" uid="uid://c31mj4w7kne2e" path="res://scenes/slot_gui.tscn" id="3_ba86g"]
 
-[node name="InventoryGUI" type="Control" unique_id=1107150642]
+[node name="InventoryGUI" type="Control" unique_id=1107150642 groups=["ui_inventory"]]
 custom_minimum_size = Vector2(304, 136)
 layout_mode = 3
 anchors_preset = 0

@@ -1,7 +1,10 @@
 extends Resource
-
 class_name InventoryItem
 
 @export var name: String = ""
 @export var texture: Texture2D
 @export var maxAmountPrStack: int = 1
+
+
+func use(player) -> void:
+	pass

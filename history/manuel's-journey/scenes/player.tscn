@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://dy6ki7lijbnrj" path="res://assets/sprites/knight.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://bby1qllub3jsy" path="res://scripts/player.gd" id="1_g2els"]
-[ext_resource type="Resource" uid="uid://srnuju6ictf3" path="res://inventory/playerInventory.tres" id="2_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://batmjtec6yiom" path="res://assets/sprites/Health Bar/Pixel Bar Starter Pack/0-Health_Bar(Sheet).png" id="4_dqkch"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
@@ -306,7 +305,6 @@ _data = {
 z_index = 5
 collision_layer = 2
 script = ExtResource("1_g2els")
-inventory = ExtResource("2_qhqgy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=83173085]
 clip_children = 2
