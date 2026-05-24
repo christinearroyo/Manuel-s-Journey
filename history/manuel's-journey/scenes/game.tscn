@@ -342,49 +342,11 @@ layer_1/tile_data = PackedInt32Array(-65528, 0, 7, -65527, 65536, 6, -327666, 58
 layer_2/name = "collectables"
 layer_2/tile_data = PackedInt32Array(-458753, 3, 65536, -524288, 3, 65536, -65527, 3, 65536, -131062, 3, 65536, -196597, 3, 65536, -327668, 3, 65536, -262132, 3, 65536, -327667, 3, 65536, -327664, 3, 65536, -327663, 3, 65536, -655345, 3, 65536, -458746, 3, 65536)
 
-[node name="Merchant" type="Node" parent="." unique_id=1883191350]
-
-[node name="Merchant1" type="Node" parent="Merchant" unique_id=1942293397]
-
-[node name="Merchant" parent="Merchant/Merchant1" unique_id=2097525248 instance=ExtResource("11_sgl2t")]
-position = Vector2(-1296, 216)
+[node name="Merchant2" parent="." unique_id=2097525248 instance=ExtResource("11_sgl2t")]
+position = Vector2(-1351, 84)
 script = ExtResource("12_wljb1")
 
-[node name="Shop" parent="Merchant/Merchant1/Merchant" unique_id=452113801 instance=ExtResource("12_qouja")]
-
-[node name="Platform" parent="Merchant/Merchant1" unique_id=1482797256 instance=ExtResource("3_lnu2h")]
-position = Vector2(-1328, 232)
-
-[node name="Platform2" parent="Merchant/Merchant1" unique_id=393140131 instance=ExtResource("3_lnu2h")]
-position = Vector2(-1296, 232)
-
-[node name="Merchant2" type="Node" parent="Merchant" unique_id=1601767250]
-
-[node name="Merchant" parent="Merchant/Merchant2" unique_id=1385444855 instance=ExtResource("11_sgl2t")]
-position = Vector2(464, 184)
-script = ExtResource("12_wljb1")
-
-[node name="Shop" parent="Merchant/Merchant2/Merchant" unique_id=1679578431 instance=ExtResource("12_qouja")]
-
-[node name="Platform" parent="Merchant/Merchant2" unique_id=551729009 instance=ExtResource("3_lnu2h")]
-position = Vector2(432, 200)
-
-[node name="Platform2" parent="Merchant/Merchant2" unique_id=2114391745 instance=ExtResource("3_lnu2h")]
-position = Vector2(464, 200)
-
-[node name="Merchant3" type="Node" parent="Merchant" unique_id=1752664101]
-
-[node name="Merchant" parent="Merchant/Merchant3" unique_id=402747855 instance=ExtResource("11_sgl2t")]
-position = Vector2(-1528, 1000)
-script = ExtResource("12_wljb1")
-
-[node name="Shop" parent="Merchant/Merchant3/Merchant" unique_id=452434654 instance=ExtResource("12_qouja")]
-
-[node name="Platform" parent="Merchant/Merchant3" unique_id=395554862 instance=ExtResource("3_lnu2h")]
-position = Vector2(-1560, 1016)
-
-[node name="Platform2" parent="Merchant/Merchant3" unique_id=1527586508 instance=ExtResource("3_lnu2h")]
-position = Vector2(-1528, 1016)
+[node name="Shop" parent="Merchant2" unique_id=452113801 instance=ExtResource("12_qouja")]
 
 [node name="Boss" type="Control" parent="." unique_id=1787570045]
 layout_mode = 3
