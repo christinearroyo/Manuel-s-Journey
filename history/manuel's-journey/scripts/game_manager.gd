@@ -1,8 +1,6 @@
 extends Node
 
 var score = 0
-
-@onready var game_manager: Node = %GameManager
 @onready var score_label: Label = $ScoreLabel
 @onready var score_label2: Label = $ScoreLabel2
 @onready var score_label4: Label = $"../CanvasLayer/ScoreLabel4"

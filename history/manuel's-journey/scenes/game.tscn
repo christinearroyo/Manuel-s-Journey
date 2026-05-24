@@ -841,5 +841,3 @@ offset_bottom = 31.0
 
 [connection signal="body_entered" from="Boss/demon boss" to="Boss/boss slime" method="_on_demon_boss_body_entered"]
 [connection signal="body_entered" from="Boss/hell boss" to="Boss/hell boss" method="_on_body_entered"]
-[connection signal="closed" from="CanvasLayer/InventoryGUI" to="." method="_on_inventory_gui_closed"]
-[connection signal="opened" from="CanvasLayer/InventoryGUI" to="." method="_on_inventory_gui_opened"]
