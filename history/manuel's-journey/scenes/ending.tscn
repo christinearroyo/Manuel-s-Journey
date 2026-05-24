@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://0pyevwm1batl"]
+
+[ext_resource type="Texture2D" uid="uid://dcf08qh04wiah" path="res://assets/ending.png" id="1_fyrdv"]
+[ext_resource type="FontFile" uid="uid://csjhmooj4ehqh" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_2x1jc"]
+[ext_resource type="Script" uid="uid://bay6y0s84cb86" path="res://scripts/end.gd" id="3_2x1jc"]
+
+[node name="ending" type="Area2D" unique_id=337894376]
+
+[node name="background" type="Sprite2D" parent="." unique_id=1180944444]
+position = Vector2(560, 322.00003)
+scale = Vector2(1.0359374, 1.0514706)
+texture = ExtResource("1_fyrdv")
+
+[node name="introStory" type="Label" parent="." unique_id=893619657]
+offset_left = 80.0
+offset_top = 185.0
+offset_right = 1062.0
+offset_bottom = 560.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 9
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("2_2x1jc")
+theme_override_font_sizes/font_size = 21
+text = "After a long and dangerous journey, 
+Manuel finally defeats the forces of 
+corruption that once threatened 
+Neverland. Peace slowly returns to 
+the kingdom, the people regain hope, 
+and the darkness fades from the land.
+
+Through bravery, sacrifice, and determination, 
+Manuel proves himself worthy of the crown 
+and rises as the new King of Neverland, 
+remembered forever as the hero who saved Oasis.
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="End" type="Button" parent="." unique_id=1514146730]
+offset_left = 494.0
+offset_top = 559.0
+offset_right = 637.0
+offset_bottom = 612.0
+theme_override_fonts/font = ExtResource("2_2x1jc")
+theme_override_font_sizes/font_size = 17
+text = "End"
+script = ExtResource("3_2x1jc")
+
+[connection signal="pressed" from="End" to="End" method="_on_pressed"]

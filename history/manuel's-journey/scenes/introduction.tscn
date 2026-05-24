@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://c3ylkesl3omgm"]
+
+[ext_resource type="Texture2D" uid="uid://dd7ocf1jvww4h" path="res://assets/kingdom.png" id="1_fiwxd"]
+[ext_resource type="FontFile" uid="uid://csjhmooj4ehqh" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_e3kje"]
+[ext_resource type="Script" uid="uid://bsrl2ysdl4dvp" path="res://scenes/continue.gd" id="2_tgans"]
+
+[node name="introduction" type="Area2D" unique_id=337894376]
+
+[node name="background" type="Sprite2D" parent="." unique_id=1180944444]
+position = Vector2(556, 328)
+scale = Vector2(1.0390625, 1.0367647)
+texture = ExtResource("1_fiwxd")
+
+[node name="introStory" type="Label" parent="." unique_id=893619657]
+offset_left = 80.0
+offset_top = 62.0
+offset_right = 1062.0
+offset_bottom = 534.0
+theme_override_constants/line_spacing = 3
+theme_override_constants/paragraph_spacing = 10
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("2_e3kje")
+theme_override_font_sizes/font_size = 20
+text = "In the kingdom of Neverland, darkness has spread 
+across the land, bringing corruption, dangerous 
+creatures, and powerful enemies. As fear grows 
+among the people, a brave armored knight named 
+Manuel begins a journey through the world of 
+Oasis to seek power, riches, and honor.
+
+Along the way, Manuel must explore dangerous 
+biomes, battle fierce enemies, and defeat powerful 
+bosses to restore peace to the kingdom. Through 
+courage and determination, he fights to become 
+the rightful King of Neverland.
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Continue" type="Button" parent="." unique_id=1514146730]
+offset_left = 478.0
+offset_top = 545.0
+offset_right = 659.0
+offset_bottom = 599.0
+theme_override_fonts/font = ExtResource("2_e3kje")
+theme_override_font_sizes/font_size = 17
+text = "Continue"
+script = ExtResource("2_tgans")
+
+[connection signal="pressed" from="Continue" to="Continue" method="_on_pressed"]
