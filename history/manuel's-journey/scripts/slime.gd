@@ -25,8 +25,8 @@ func _process(delta: float) -> void:
 	position.x += direction * SPEED * delta
 	
 
-func damaged(damage):
-	health -= damage
+func damaged(enemy_damage):
+	health -= enemy_damage
 	if health < 1:
 		health = 0
 		animation_player.play("deathSound")

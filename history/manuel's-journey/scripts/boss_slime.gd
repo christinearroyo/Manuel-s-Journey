@@ -25,8 +25,8 @@ func _process(delta: float) -> void:
 	if animated_sprite.frame * delta == 4 * delta:
 		collision_shape_2d.disabled = false
 		
-func damaged(damage):
-	health -= damage
+func damaged(enemy_damage):
+	health -= enemy_damage
 	if health < 1:
 		health = 0
 		animation_player.play("deathSound")

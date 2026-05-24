@@ -761,16 +761,16 @@ offset_top = -40.0
 offset_right = 80.0
 
 [node name="Slime" parent="Enemy Slimes" unique_id=1065932841 instance=ExtResource("6_p57ef")]
-position = Vector2(-272, 76)
+position = Vector2(-272, 74)
 
 [node name="Slime3" parent="Enemy Slimes" unique_id=229523561 instance=ExtResource("6_p57ef")]
-position = Vector2(-1088, 43)
+position = Vector2(-1089, 42)
 
 [node name="Slime2" parent="Enemy Slimes" unique_id=229538192 instance=ExtResource("6_p57ef")]
-position = Vector2(-780, 28)
+position = Vector2(-780, 26)
 
 [node name="Slime4" parent="Enemy Slimes" unique_id=240339136 instance=ExtResource("6_p57ef")]
-position = Vector2(688, 11)
+position = Vector2(688, 10)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=82620663]
 unique_name_in_owner = true
