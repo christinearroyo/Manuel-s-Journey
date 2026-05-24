@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 func set_direction(_direction: int):
 	direction = _direction
 
-func _on_fire_hitbox_body_entered(body: Node2D) -> void:
+func _on_fire_hitbox_body_entered(_body: Node2D) -> void:
 	hit = true
 	animation_player.play("hitSound")
 	

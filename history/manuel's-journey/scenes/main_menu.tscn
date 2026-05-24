@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b4wyw8b3tc8n" path="res://assets/background.png" id="1_ekxnf"]
 [ext_resource type="Script" uid="uid://j8jp0unx0p4o" path="res://scripts/MainMenu.gd" id="1_l6cm7"]
 [ext_resource type="FontFile" uid="uid://csjhmooj4ehqh" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_bqqt6"]
+[ext_resource type="Script" uid="uid://6aom8lxlleqk" path="res://scripts/start.gd" id="3_wu84c"]
 
 [node name="Main Menu" type="Node2D" unique_id=509551687]
 
@@ -26,6 +27,7 @@ offset_bottom = 468.0
 theme_override_fonts/font = ExtResource("2_bqqt6")
 theme_override_font_sizes/font_size = 20
 text = "Start"
+script = ExtResource("3_wu84c")
 
 [node name="Exit" type="Button" parent="Button Manager" unique_id=249468863]
 layout_mode = 0
@@ -51,5 +53,5 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[connection signal="pressed" from="Button Manager/Start" to="Button Manager/Exit" method="_on_start_pressed"]
+[connection signal="pressed" from="Button Manager/Start" to="Button Manager/Start" method="_on_pressed"]
 [connection signal="pressed" from="Button Manager/Exit" to="Button Manager/Exit" method="_on_pressed"]

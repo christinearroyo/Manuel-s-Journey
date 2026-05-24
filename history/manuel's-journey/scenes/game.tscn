@@ -332,30 +332,6 @@ script = ExtResource("1_pl11u")
 unique_name_in_owner = true
 script = ExtResource("1_gee14")
 
-[node name="ScoreLabel" type="Label" parent="GameManager" unique_id=1584131647]
-offset_left = 7.0
-offset_top = -184.0
-offset_right = 112.0
-offset_bottom = -154.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_0tnpc")
-theme_override_font_sizes/font_size = 8
-text = "you collected x coins."
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="ScoreLabel2" type="Label" parent="GameManager" unique_id=1321361821]
-offset_left = -456.0
-offset_top = -328.0
-offset_right = -351.0
-offset_bottom = -298.0
-theme_override_colors/font_color = Color(0.14117648, 0.62352943, 0.8745098, 1)
-theme_override_fonts/font = ExtResource("2_0tnpc")
-theme_override_font_sizes/font_size = 8
-text = "you collected x coins."
-horizontal_alignment = 1
-autowrap_mode = 2
-
 [node name="TileMap" type="TileMap" parent="." unique_id=1633168019]
 tile_set = SubResource("TileSet_lbhrr")
 format = 2
@@ -797,6 +773,7 @@ position = Vector2(-780, 18)
 position = Vector2(688, 2)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=82620663]
+unique_name_in_owner = true
 process_mode = 3
 script = ExtResource("23_e1j6l")
 
@@ -818,9 +795,9 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -136.0
-offset_top = -32.0
+offset_top = -28.0
 offset_right = 14.0
-offset_bottom = 45.0
+offset_bottom = 49.0
 grow_horizontal = 0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -838,6 +815,3 @@ offset_left = 9.0
 offset_top = 6.0
 offset_right = 285.0
 offset_bottom = 31.0
-
-[connection signal="body_entered" from="Boss/demon boss" to="Boss/boss slime" method="_on_demon_boss_body_entered"]
-[connection signal="body_entered" from="Boss/hell boss" to="Boss/hell boss" method="_on_body_entered"]

@@ -12,17 +12,7 @@ var fireball_direction = 1
 
 const FIREBALL = preload("uid://deplmj5qsqm0x")
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-<<<<<<< Updated upstream
-@onready var effects = $Effects
-@onready var hurtBox = $hurtBox
-@onready var hurtTimer = $hurtTimer
 
-@export var maxHealth: int = 5
-@onready var currentHealth: int = maxHealth
-
-@export var knockbackPower: int = 500
-
-# ✅ FIXED TYPE
 @export var inventory: Inventory = Inventory.new()
 
 @onready var ui = get_tree().get_first_node_in_group("ui_inventory")
@@ -38,7 +28,6 @@ func _ready():
 
 	if hotbar:
 		hotbar.set_inventory(inventory)
-	var ui = get_tree().get_first_node_in_group("ui_inventory")
 
 	if ui == null:
 		print("UI NOT FOUND")
@@ -47,20 +36,15 @@ func _ready():
 	print("UI FOUND")
 
 	ui.set_inventory(inventory)
-
-=======
+	
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var health_sprite: AnimatedSprite2D = $HealthSprite
->>>>>>> Stashed changes
+
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-<<<<<<< Updated upstream
-
-=======
 		
->>>>>>> Stashed changes
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		
@@ -133,64 +117,20 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
-
-<<<<<<< Updated upstream
-	if not isHurt:
-		for area in hurtBox.get_overlapping_areas():
-			if area.name == "hitBox":
-				hurtByEnemy(area)
+	
 
 
-func hurtByEnemy(area):
-	currentHealth -= 1
-	currentHealth = max(currentHealth, 0)
 
-	healthChanged.emit(currentHealth)
-
-	if currentHealth == 0:
-		die()
-		return
-
-	isHurt = true
-
-	knockback(area.get_parent().velocity)
-	effects.play("hurtBlink")
-	hurtTimer.start()
-
-	await hurtTimer.timeout
-
-	effects.play("RESET")
-	isHurt = false
-
-
-func die():
-	global_position = spawnPosition
-	currentHealth = maxHealth
-	healthChanged.emit(currentHealth)
-	velocity = Vector2.ZERO
-
-
-func _on_hurt_box_area_entered(area):
-	if area.has_method("collect"):
-		area.collect(inventory)
-
-
-func knockback(enemyVelocity):
-	var knockbackDirection = (enemyVelocity - velocity).normalized() * knockbackPower
-	velocity = knockbackDirection
-	move_and_slide()
-
-
-func increase_health(amount: int) -> void:
-
-	currentHealth += amount
-
-	if currentHealth > maxHealth:
-		currentHealth = maxHealth
-
-	print("HEALTH:", currentHealth)
-
-	healthChanged.emit(currentHealth)
+#func increase_health(amount: int) -> void:
+#
+	#currentHealth += amount
+#
+	#if currentHealth > maxHealth:
+		#currentHealth = maxHealth
+#
+	#print("HEALTH:", currentHealth)
+#
+	#healthChanged.emit(currentHealth)
 
 
 func use_item(item):
@@ -199,7 +139,7 @@ func use_item(item):
 
 	if item:
 		item.use(self)
-=======
+		
 func damaged(damage):
 	health -= damage
 	if health < 1:
@@ -208,6 +148,8 @@ func damaged(damage):
 	health_sprite.frame = health
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area.has_method("collect"):
+		area.collect(inventory)
 	var enemy = area.get_parent()
 	if area.name == "SlimeHitbox":
 		slime_hit = true
@@ -224,4 +166,3 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.name == "HellBossHitbox":
 		hell_boss_hit = true
 		damaged(enemy.get_damage())
->>>>>>> Stashed changes

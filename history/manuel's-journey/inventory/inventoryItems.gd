@@ -6,5 +6,5 @@ class_name InventoryItem
 @export var maxAmountPrStack: int = 1
 
 
-func use(player) -> void:
+func use(_player) -> void:
 	pass
