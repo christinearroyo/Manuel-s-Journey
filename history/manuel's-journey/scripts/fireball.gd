@@ -1,6 +1,6 @@
 extends Node2D
 
-const SPEED = 200
+var SPEED = 200
 var direction = 1
 var hit = false
 var damage = 2

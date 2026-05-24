@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 @onready var canvas_layer: CanvasLayer = %CanvasLayer
+@onready var player: CharacterBody2D = $"../../Player"
+
 
 var curItem = 0
 var select = 0
@@ -18,21 +20,23 @@ func _on_close_pressed() -> void:
 	get_node("Animation").play("TransOut")
 	get_tree().paused = false
 
-
 func _on_next_pressed() -> void:
 	switchItem(curItem + 1)
-
 
 func _on_prev_pressed() -> void:
 	switchItem(curItem - 1)
 
-
 func _on_buy_pressed() -> void:
 	var item = Global.items[curItem]
 	var cost = item["Cost"]
-
 	if canvas_layer.coins >= cost:
 		canvas_layer.buy(cost)
+		if item["Name"] == "Character Speed":
+			player.SPEED += 100
+		if item["Name"] == "Damage":
+			pass
+		if item["Name"] == "Shield":
+			pass
 		print("Purchased:", item["Name"])
 	else:
 		print("Not enough coins!")

@@ -4,18 +4,18 @@ var score = 2100
 
 var items = {
 	0:{
-		"Name" : "Attack Speed",
-		"Description" : "+10 attack speed",
-		"Cost" : 10
-	},
-	1:{
 		"Name" : "Character Speed",
-		"Description" : "+5 speed",
+		"Description" : "+10 Speed to the Character.",
 		"Cost" : 5
 	},
-	2:{
+	1:{
 		"Name" : "Damage",
-		"Description" : "+3 attack damage",
-		"Cost" : 7
+		"Description" : "+1 Damage to the Enemy.",
+		"Cost" : 10
+	},
+	2:{
+		"Name" : "Shield",
+		"Description" : "+4 Health to the Player by Having Shield",
+		"Cost" : 20
 	},
 }

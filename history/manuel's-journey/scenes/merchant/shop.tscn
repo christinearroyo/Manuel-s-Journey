@@ -1,21 +1,15 @@
 [gd_scene format=3 uid="uid://dixqkr3u4ba7y"]
 
 [ext_resource type="Script" uid="uid://cd523kqtab4fu" path="res://scripts/merchant/shop.gd" id="1_8g5vc"]
+[ext_resource type="Texture2D" uid="uid://dbwcn4wtaw540" path="res://assets/sprites/Inventory UI/InventoryRect.png" id="2_04naa"]
+[ext_resource type="FontFile" uid="uid://csjhmooj4ehqh" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_r1kbf"]
 [ext_resource type="Script" uid="uid://ksjginlcallk" path="res://scripts/merchant/close.gd" id="2_xt4l5"]
-[ext_resource type="Texture2D" uid="uid://d201awl0n38em" path="res://assets/sprites/Inventory UI/healpotion.png" id="3_qcnxx"]
 [ext_resource type="Texture2D" uid="uid://cwtt4quferc8n" path="res://gamelogo.png" id="4_r1kbf"]
 [ext_resource type="Texture2D" uid="uid://taox0gvx2koi" path="res://assets/sprites/Inventory UI/sword.png" id="5_04naa"]
+[ext_resource type="Texture2D" uid="uid://cebmdn5jw4w3g" path="res://assets/sprites/shield.png" id="6_r1kbf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g48gt"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_qcnxx")
-}],
-"loop": true,
-"name": &"Attack Speed",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("4_r1kbf")
@@ -30,6 +24,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"Damage",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_r1kbf")
+}],
+"loop": true,
+"name": &"Shield",
 "speed": 5.0
 }]
 
@@ -95,12 +97,25 @@ offset_top = -550.0
 offset_right = 1051.0
 offset_bottom = -101.0
 
+[node name="NinePatchRect" type="NinePatchRect" parent="Panel" unique_id=1732134945]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 0
+offset_right = 950.0
+offset_bottom = 449.0
+texture = ExtResource("2_04naa")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
 [node name="Close" type="Button" parent="Panel" unique_id=82207010]
 layout_mode = 0
 offset_left = 705.0
 offset_top = 21.0
 offset_right = 925.0
 offset_bottom = 110.0
+theme_override_fonts/font = ExtResource("2_r1kbf")
+theme_override_font_sizes/font_size = 34
 text = "Close"
 script = ExtResource("2_xt4l5")
 
@@ -110,54 +125,64 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="AnimationSprite" type="AnimatedSprite2D" parent="Panel/Control" unique_id=1039325354]
-position = Vector2(453.99997, 165)
+position = Vector2(475.00024, 165)
 scale = Vector2(5.6666665, 5.5625)
 sprite_frames = SubResource("SpriteFrames_g48gt")
-animation = &"Attack Speed"
+animation = &"Character Speed"
 
 [node name="Name" type="Label" parent="Panel/Control" unique_id=1147010123]
 layout_mode = 0
-offset_left = 407.0
-offset_top = 55.0
-offset_right = 494.0
-offset_bottom = 78.0
-text = "Attack Speed"
+offset_left = 257.0
+offset_top = 37.0
+offset_right = 693.0
+offset_bottom = 96.0
+theme_override_fonts/font = ExtResource("2_r1kbf")
+theme_override_font_sizes/font_size = 26
+text = "Character Speed"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Description" type="Label" parent="Panel/Control" unique_id=628401037]
 layout_mode = 0
-offset_left = 422.0
-offset_top = 260.0
-offset_right = 511.0
-offset_bottom = 283.0
-text = "+10 attack speed
-Coin: 10"
+offset_left = 67.0
+offset_top = 239.0
+offset_right = 884.0
+offset_bottom = 321.0
+theme_override_fonts/font = ExtResource("2_r1kbf")
+theme_override_font_sizes/font_size = 17
+text = "+10 Speed to the Character.
+Coin: 5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Next" type="Button" parent="Panel/Control" unique_id=130255272]
 layout_mode = 0
-offset_left = 553.0
-offset_top = 150.0
-offset_right = 605.0
-offset_bottom = 201.0
+offset_left = 568.0
+offset_top = 148.0
+offset_right = 623.0
+offset_bottom = 203.0
+theme_override_fonts/font = ExtResource("2_r1kbf")
+theme_override_font_sizes/font_size = 38
 text = ">"
 
 [node name="Prev" type="Button" parent="Panel/Control" unique_id=311017569]
 layout_mode = 0
-offset_left = 315.0
-offset_top = 142.0
-offset_right = 371.0
-offset_bottom = 201.0
+offset_left = 328.0
+offset_top = 148.0
+offset_right = 383.0
+offset_bottom = 203.0
+theme_override_fonts/font = ExtResource("2_r1kbf")
+theme_override_font_sizes/font_size = 38
 text = "<"
 
 [node name="Buy" type="Button" parent="Panel/Control" unique_id=1456208421]
 layout_mode = 0
-offset_left = 392.0
-offset_top = 317.0
-offset_right = 527.0
-offset_bottom = 367.0
+offset_left = 348.0
+offset_top = 342.0
+offset_right = 603.0
+offset_bottom = 410.0
+theme_override_fonts/font = ExtResource("2_r1kbf")
+theme_override_font_sizes/font_size = 25
 text = "Purchase"
 
 [node name="Animation" type="AnimationPlayer" parent="." unique_id=96461228]
