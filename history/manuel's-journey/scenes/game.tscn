@@ -367,7 +367,7 @@ position = Vector2(-1338, 1146)
 scale = Vector2(1.1137143, 1.3634322)
 
 [node name="Merchant" parent="." unique_id=2097525248 instance=ExtResource("11_sgl2t")]
-position = Vector2(-52, 5)
+position = Vector2(-88, 22)
 script = ExtResource("12_wljb1")
 
 [node name="Shop" parent="Merchant" unique_id=452113801 instance=ExtResource("12_qouja")]
@@ -761,16 +761,16 @@ offset_top = -40.0
 offset_right = 80.0
 
 [node name="Slime" parent="Enemy Slimes" unique_id=1065932841 instance=ExtResource("6_p57ef")]
-position = Vector2(-272, 66)
+position = Vector2(-272, 76)
 
 [node name="Slime3" parent="Enemy Slimes" unique_id=229523561 instance=ExtResource("6_p57ef")]
-position = Vector2(-1088, 34)
+position = Vector2(-1088, 43)
 
 [node name="Slime2" parent="Enemy Slimes" unique_id=229538192 instance=ExtResource("6_p57ef")]
-position = Vector2(-780, 18)
+position = Vector2(-780, 28)
 
 [node name="Slime4" parent="Enemy Slimes" unique_id=240339136 instance=ExtResource("6_p57ef")]
-position = Vector2(688, 2)
+position = Vector2(688, 11)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=82620663]
 unique_name_in_owner = true
