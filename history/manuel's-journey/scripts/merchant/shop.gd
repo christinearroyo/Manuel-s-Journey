@@ -33,12 +33,12 @@ func _on_buy_pressed() -> void:
 		canvas_layer.buy(cost)
 		if item["Name"] == "Character Speed":
 			player.SPEED += 100
-		if item["Name"] == "Damage":
-			pass
+		if item["Name"] == "Sword Damage":
+			player.upgrade_sword(1)
+		if item["Name"] == "Magic Damage":
+			player.upgrade_magic(1)
 		if item["Name"] == "Shield":
 			player.apply_shield()
 		print("Purchased:", item["Name"])
 	else:
-		if item["Name"] == "Shield":
-			player.apply_shield()
 		print("Not enough coins!")

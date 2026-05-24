@@ -56,10 +56,13 @@ func damaged(enemy_damage):
 	if health >= 12:
 		health_sprite_4.frame = health - 12
 	elif health >= 8:
+		health_sprite_4.frame = 0
 		health_sprite_3.frame = health - 8
 	elif health >= 4:
+		health_sprite_3.frame = 0
 		health_sprite_2.frame = health - 4
 	else:
+		health_sprite_2.frame = 0
 		health_sprite.frame = health
 		
 func get_damage():

@@ -6,7 +6,12 @@
 [ext_resource type="Script" uid="uid://ksjginlcallk" path="res://scripts/merchant/close.gd" id="2_xt4l5"]
 [ext_resource type="Texture2D" uid="uid://cwtt4quferc8n" path="res://gamelogo.png" id="4_r1kbf"]
 [ext_resource type="Texture2D" uid="uid://taox0gvx2koi" path="res://assets/sprites/Inventory UI/sword.png" id="5_04naa"]
+[ext_resource type="Texture2D" uid="uid://c3slv6wc0i83s" path="res://assets/sprites/Flying Demon 2D Pixel Art/Flying Demon 2D Pixel Art/Sprites/projectile.png" id="6_g48gt"]
 [ext_resource type="Texture2D" uid="uid://cebmdn5jw4w3g" path="res://assets/sprites/shield.png" id="6_r1kbf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40d1i"]
+atlas = ExtResource("6_g48gt")
+region = Rect2(6, 9, 36, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_04naa"]
 atlas = ExtResource("6_r1kbf")
@@ -24,10 +29,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_04naa")
+"texture": SubResource("AtlasTexture_40d1i")
 }],
-"loop": true,
-"name": &"Damage",
+"loop": false,
+"name": &"Magic Damage",
 "speed": 5.0
 }, {
 "frames": [{
@@ -36,6 +41,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"Shield",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_04naa")
+}],
+"loop": true,
+"name": &"Sword Damage",
 "speed": 5.0
 }]
 
@@ -132,7 +145,7 @@ offset_bottom = 40.0
 position = Vector2(475.00024, 165)
 scale = Vector2(5.6666665, 5.5625)
 sprite_frames = SubResource("SpriteFrames_g48gt")
-animation = &"Shield"
+animation = &"Magic Damage"
 
 [node name="Name" type="Label" parent="Panel/Control" unique_id=1147010123]
 layout_mode = 0

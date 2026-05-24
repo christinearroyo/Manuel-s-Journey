@@ -12,6 +12,7 @@ var current_direction = 1
 var hurt = false
 var has_shield = false
 var shield = 4
+var magic_damage = 2
 
 const FIREBALL = preload("uid://deplmj5qsqm0x")
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -93,6 +94,7 @@ func _physics_process(delta: float) -> void:
 			fireball.get_node("FireHitbox/CollisionShape2D/AnimatedSprite2D").flip_h = true
 			fireball.position.x = position.x - 17
 		fireball.set_direction(current_direction)
+		fireball.set_damage(magic_damage)
 		fireball.position.y = position.y - 7
 		get_parent().add_child(fireball)
 	elif Input.is_action_just_pressed("swing"):
@@ -211,3 +213,9 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		sword.get_node("SwordHitbox").get_node("CollisionShape2D").disabled = true
 	if anim_name == "hitSound":
 		get_node("Hitbox").set_deferred("Monitoring", true)
+
+func upgrade_sword(stats):
+	get_node("Sword").upgrade(stats)
+
+func upgrade_magic(stats):
+	magic_damage += stats

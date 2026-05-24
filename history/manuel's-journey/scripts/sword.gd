@@ -1,6 +1,9 @@
 extends Node2D
 
-var damamge = 2
+var damage = 2
 
 func get_damage():
-	return damamge
+	return damage
+
+func upgrade(stats):
+	damage += stats

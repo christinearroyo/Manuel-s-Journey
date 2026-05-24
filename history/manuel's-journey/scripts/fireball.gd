@@ -28,3 +28,6 @@ func get_damage():
 func hit_enemy():
 	hit = true
 	animation_player.play("hitSound")
+
+func set_damage(magic_damage):
+	damage = magic_damage
