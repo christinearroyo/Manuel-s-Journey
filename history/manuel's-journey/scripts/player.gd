@@ -8,7 +8,7 @@ var golem_hit = false
 var demon_boss_hit = false
 var hell_boss_hit = false
 var health = 4
-var fireball_direction = 1
+var current_direction = 1
 
 const FIREBALL = preload("uid://deplmj5qsqm0x")
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -47,12 +47,15 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 		
 	if Input.is_action_just_pressed("move_left"):
-		fireball_direction = -1
-		sword.position.x = position.x - 7 * delta
-		sword.rotation = deg_to_rad(-94)
-		
+		if current_direction == 1:
+			current_direction = -1
+			sword.position.x -= 7*2
+			sword.rotation = deg_to_rad(-45)
 	if Input.is_action_just_pressed("move_right"):
-		fireball_direction = 1
+		if current_direction == -1:
+			current_direction = 1
+			sword.position.x += 7*2
+			sword.rotation = deg_to_rad(45)
 		
 
 	# Handle jump.
@@ -74,14 +77,19 @@ func _physics_process(delta: float) -> void:
 			get_tree().call_deferred("reload_current_scene")
 	elif Input.is_action_just_pressed("fire"):
 		var fireball = FIREBALL.instantiate()
-		if fireball_direction == 1:
+		if current_direction == 1:
 			fireball.position.x = position.x + 17
 		else:
 			fireball.get_node("FireHitbox/CollisionShape2D/AnimatedSprite2D").flip_h = true
 			fireball.position.x = position.x - 17
-		fireball.set_direction(fireball_direction)
+		fireball.set_direction(current_direction)
 		fireball.position.y = position.y - 7
 		get_parent().add_child(fireball)
+	elif Input.is_action_just_pressed("swing"):
+		if current_direction == 1:
+			animation_player.play("swing_right")
+		else:
+			animation_player.play("swing_left")
 	elif slime_hit:
 		animated_sprite.play("hit")
 		if animated_sprite.frame * delta == 1 * delta:
@@ -116,21 +124,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
-	
-
-
-
-#func increase_health(amount: int) -> void:
-#
-	#currentHealth += amount
-#
-	#if currentHealth > maxHealth:
-		#currentHealth = maxHealth
-#
-	#print("HEALTH:", currentHealth)
-#
-	#healthChanged.emit(currentHealth)
-
 
 func use_item(item):
 
