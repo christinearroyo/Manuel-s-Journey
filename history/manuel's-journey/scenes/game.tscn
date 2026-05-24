@@ -373,6 +373,10 @@ position = Vector2(-1338, 1146)
 scale = Vector2(1.1137143, 1.3634322)
 
 [node name="Player" parent="." unique_id=1787603029 instance=ExtResource("1_uwrxv")]
+<<<<<<< Updated upstream
+=======
+position = Vector2(-1430, 1047)
+>>>>>>> Stashed changes
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=170359459]
 position = Vector2(1.8189894e-12, 0)
@@ -625,7 +629,9 @@ scale = Vector2(0.8145512, 1.7515508)
 polygon = PackedVector2Array(0, -8.563835, 6.1383514, -3.4255314, 6.1383514, 3.42554, 1.2276688, 8.563844, -6.1383514, 3.42554, -6.1383514, -3.4255314)
 
 [node name="Portal3" parent="Portals" unique_id=121836418 instance=ExtResource("5_iywne")]
+visible = false
 position = Vector2(-1, 88)
+monitoring = false
 script = ExtResource("11_rysoc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Portals/Portal3" unique_id=576191542]
@@ -654,7 +660,9 @@ scale = Vector2(0.8145512, 1.7515508)
 polygon = PackedVector2Array(0, -8.563835, 6.1383514, -3.4255314, 6.1383514, 3.42554, 1.2276688, 8.563844, -6.1383514, 3.42554, -6.1383514, -3.4255314)
 
 [node name="Portal5" parent="Portals" unique_id=84406358 instance=ExtResource("5_iywne")]
+visible = false
 position = Vector2(-2, 176)
+monitoring = false
 script = ExtResource("14_1kice")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Portals/Portal5" unique_id=514657650]
@@ -668,23 +676,25 @@ position = Vector2(970, 112.999985)
 scale = Vector2(0.8145512, 1.7515508)
 polygon = PackedVector2Array(0, -8.563835, 6.1383514, -3.4255314, 6.1383514, 3.42554, 1.2276688, 8.563844, -6.1383514, 3.42554, -6.1383514, -3.4255314)
 
-[node name="Portal6q" parent="Portals" unique_id=1360316388 instance=ExtResource("5_iywne")]
+[node name="Portal6" parent="Portals" unique_id=1360316388 instance=ExtResource("5_iywne")]
 position = Vector2(-48, 176)
 collision_layer = 2
 script = ExtResource("15_5newe")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Portals/Portal6q" unique_id=1640940612]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Portals/Portal6" unique_id=1640940612]
 position = Vector2(-1559, 865.00006)
 sprite_frames = SubResource("SpriteFrames_trtic")
 autoplay = "default"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Portals/Portal6q" unique_id=936820975]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Portals/Portal6" unique_id=936820975]
 position = Vector2(-1558, 865)
 scale = Vector2(0.8145512, 1.7515508)
 polygon = PackedVector2Array(0, -8.563835, 6.1383514, -3.4255314, 6.1383514, 3.42554, 1.2276688, 8.563844, -6.1383514, 3.42554, -6.1383514, -3.4255314)
 
 [node name="Portal7" parent="Portals" unique_id=1115696092 instance=ExtResource("5_iywne")]
+visible = false
 position = Vector2(-2, 176)
+monitoring = false
 script = ExtResource("16_37s47")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Portals/Portal7" unique_id=105300231]
