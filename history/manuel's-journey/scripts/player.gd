@@ -10,7 +10,7 @@ var hell_boss_hit = false
 var health = 4
 var current_direction = 1
 var hurt = false
-var has_shield = true
+var has_shield = false
 var shield = 4
 
 const FIREBALL = preload("uid://deplmj5qsqm0x")
@@ -200,6 +200,11 @@ func increase_health(health_increase):
 	if health > 4:
 		health = 4
 	health_sprite.frame = health
+func apply_shield():
+	for shield_bar in shields:
+		shield_bar.visible = true
+	shield = 4
+	has_shield = true
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "swing_right" or anim_name == "swing_left":

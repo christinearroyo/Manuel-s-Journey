@@ -596,25 +596,30 @@ bus = &"SFX"
 stream = ExtResource("7_fjrip")
 
 [node name="ShieldIcon" type="AnimatedSprite2D" parent="." unique_id=1684330033]
+visible = false
 position = Vector2(-11.5, -29)
 sprite_frames = SubResource("SpriteFrames_g5jhy")
 
 [node name="ShieldSprite" type="AnimatedSprite2D" parent="." unique_id=92053080]
+visible = false
 position = Vector2(-6, -29.5)
 scale = Vector2(0.4, 0.9)
 sprite_frames = SubResource("SpriteFrames_holxr")
 
 [node name="ShieldSprite2" type="AnimatedSprite2D" parent="." unique_id=1923338411]
+visible = false
 position = Vector2(-2, -29.5)
 scale = Vector2(0.4, 0.9)
 sprite_frames = SubResource("SpriteFrames_holxr")
 
 [node name="ShieldSprite3" type="AnimatedSprite2D" parent="." unique_id=2141300561]
+visible = false
 position = Vector2(2, -29.5)
 scale = Vector2(0.4, 0.9)
 sprite_frames = SubResource("SpriteFrames_holxr")
 
 [node name="ShieldSprite4" type="AnimatedSprite2D" parent="." unique_id=667376216]
+visible = false
 position = Vector2(6, -29.5)
 scale = Vector2(0.4, 0.9)
 sprite_frames = SubResource("SpriteFrames_mx1m4")

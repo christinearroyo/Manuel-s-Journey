@@ -36,7 +36,9 @@ func _on_buy_pressed() -> void:
 		if item["Name"] == "Damage":
 			pass
 		if item["Name"] == "Shield":
-			pass
+			player.apply_shield()
 		print("Purchased:", item["Name"])
 	else:
+		if item["Name"] == "Shield":
+			player.apply_shield()
 		print("Not enough coins!")
