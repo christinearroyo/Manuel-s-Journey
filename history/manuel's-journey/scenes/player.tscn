@@ -3,6 +3,49 @@
 [ext_resource type="Texture2D" uid="uid://dy6ki7lijbnrj" path="res://assets/sprites/knight.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://bby1qllub3jsy" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://batmjtec6yiom" path="res://assets/sprites/Health Bar/Pixel Bar Starter Pack/0-Health_Bar(Sheet).png" id="4_dqkch"]
+[ext_resource type="FontFile" uid="uid://csjhmooj4ehqh" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="5_qlg0r"]
+[ext_resource type="AudioStream" uid="uid://bf7yj5x3gkt5v" path="res://assets/sounds/hurt.wav" id="5_tuyoq"]
+[ext_resource type="AudioStream" uid="uid://bgwpfcqbaijwb" path="res://assets/sounds/death.wav" id="6_tuyoq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cs1tg"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(96, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dvfe"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(64, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_giy8y"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(32, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdfoy"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_md1ol"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bj30b"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(32, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4otl"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(64, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2b1d"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(96, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jc3p3"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(64, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hax0n"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(64, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("1_3vyb7")
@@ -116,6 +159,51 @@ region = Rect2(224, 96, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_cs1tg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2dvfe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_giy8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdfoy")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_md1ol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bj30b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4otl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2b1d")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jc3p3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hax0n")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_g2els")
 }, {
 "duration": 1.0,
@@ -153,7 +241,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dt7fs")
 }],
-"loop": true,
+"loop": false,
 "name": &"jumping",
 "speed": 15.0
 }, {
@@ -217,11 +305,11 @@ height = 18.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a38lo"]
 atlas = ExtResource("4_dqkch")
-region = Rect2(0, 0, 48, 16)
+region = Rect2(0, 64, 48, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wqfne"]
 atlas = ExtResource("4_dqkch")
-region = Rect2(0, 16, 48, 16)
+region = Rect2(0, 48, 48, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wnwbv"]
 atlas = ExtResource("4_dqkch")
@@ -229,11 +317,11 @@ region = Rect2(0, 32, 48, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gl8cc"]
 atlas = ExtResource("4_dqkch")
-region = Rect2(0, 48, 48, 16)
+region = Rect2(0, 16, 48, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_487ah"]
 atlas = ExtResource("4_dqkch")
-region = Rect2(0, 64, 48, 16)
+region = Rect2(0, 0, 48, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_md1ol"]
 animations = [{
@@ -254,51 +342,74 @@ animations = [{
 "texture": SubResource("AtlasTexture_487ah")
 }],
 "loop": false,
-"name": &"default",
+"name": &"health",
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qlg0r"]
-radius = 6.0
-height = 18.0
-
-[sub_resource type="Animation" id="Animation_qlg0r"]
+[sub_resource type="Animation" id="Animation_fjrip"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D/ColorRect:color")
+tracks/0/path = NodePath("HitSound:playing")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 0, 0, 0)]
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Death Sound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_tuyoq"]
-resource_name = "hurtBlink"
-length = 0.4
-loop_mode = 1
-step = 0.2
+[sub_resource type="Animation" id="Animation_ur7pv"]
+resource_name = "deathSound"
+length = 0.79
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D/ColorRect:color")
+tracks/0/path = NodePath("Death Sound:playing")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0002, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 0, 0, 0.5176471), Color(1, 0, 0, 0.5176471), Color(1, 1, 1, 1)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_fjrip"]
+[sub_resource type="Animation" id="Animation_smehm"]
+resource_name = "hitSound"
+length = 0.17
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitSound:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ur7pv"]
 _data = {
-&"RESET": SubResource("Animation_qlg0r"),
-&"hurtBlink": SubResource("Animation_tuyoq")
+&"RESET": SubResource("Animation_fjrip"),
+&"deathSound": SubResource("Animation_ur7pv"),
+&"hitSound": SubResource("Animation_smehm")
 }
 
 [node name="Player" type="CharacterBody2D" unique_id=1787603029]
@@ -307,42 +418,52 @@ collision_layer = 2
 script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=83173085]
-clip_children = 2
+position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_tuyoq")
-animation = &"jumping"
+animation = &"attack"
 autoplay = "idle"
+frame = 3
+frame_progress = 1.0
 
-[node name="ColorRect" type="ColorRect" parent="AnimatedSprite2D" unique_id=2017991187]
-offset_left = -20.0
-offset_top = -19.0
-offset_right = 20.0
-offset_bottom = 21.0
-color = Color(1, 0, 0, 0)
+[node name="Hitbox" type="Area2D" parent="." unique_id=653943141]
+position = Vector2(0, -12)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=654601335]
-visible = false
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=654601335]
 position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_g2els")
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1379187541]
-position = Vector2(2.3841858e-07, -9)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=897475178]
+position = Vector2(0, -9)
+shape = SubResource("CapsuleShape2D_g2els")
+
+[node name="HealthSprite" type="AnimatedSprite2D" parent="." unique_id=1379187541]
+position = Vector2(1.4210855e-14, -21)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_md1ol")
+animation = &"health"
+frame = 4
 
-[node name="hurtBox" type="Area2D" parent="." unique_id=1556022553]
-collision_mask = 3
+[node name="ScoreLabel3" type="Label" parent="." unique_id=1803444261]
+offset_left = 221.0
+offset_top = -160.0
+offset_right = 277.0
+offset_bottom = -152.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_qlg0r")
+theme_override_font_sizes/font_size = 7
+text = "Coins: 0"
+horizontal_alignment = 1
+autowrap_mode = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBox" unique_id=1227052081]
-visible = false
-position = Vector2(0, 3)
-shape = SubResource("CapsuleShape2D_qlg0r")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2006054955]
+libraries/ = SubResource("AnimationLibrary_ur7pv")
 
-[node name="Effects" type="AnimationPlayer" parent="." unique_id=2078885634]
-libraries/ = SubResource("AnimationLibrary_fjrip")
+[node name="HitSound" type="AudioStreamPlayer2D" parent="." unique_id=1449703778]
+stream = ExtResource("5_tuyoq")
+bus = &"SFX"
 
-[node name="hurtTimer" type="Timer" parent="." unique_id=1601224557]
-wait_time = 2.0
-one_shot = true
+[node name="Death Sound" type="AudioStreamPlayer2D" parent="." unique_id=66625005]
+stream = ExtResource("6_tuyoq")
+bus = &"SFX"
 
-[connection signal="area_entered" from="hurtBox" to="." method="_on_hurt_box_area_entered"]
-[connection signal="area_exited" from="hurtBox" to="." method="_on_hurt_box_area_exited"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

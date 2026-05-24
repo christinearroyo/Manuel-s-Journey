@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bi17ki46teb2q" path="res://scripts/golem.gd" id="1_6fya6"]
 [ext_resource type="Texture2D" uid="uid://c4vsbw1kyqd8c" path="res://assets/sprites/Mecha-stone Golem 0.1/Mecha-stone Golem 0.1/PNG sheet/Character_sheet.png" id="1_gnfrb"]
-[ext_resource type="PackedScene" uid="uid://x2441twe6jak" path="res://scenes/killzone.tscn" id="3_w3tsi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w3tsi"]
 atlas = ExtResource("1_gnfrb")
@@ -134,7 +133,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_r0o18"]
 radius = 4.2462883
 
-[node name="golem" type="Area2D" unique_id=966806416]
+[node name="golem" type="Node2D" unique_id=1426989375]
 script = ExtResource("1_6fya6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1343093169]
@@ -143,24 +142,22 @@ sprite_frames = SubResource("SpriteFrames_knqip")
 autoplay = "default"
 frame = 16
 
-[node name="Killzone" parent="." unique_id=92160326 instance=ExtResource("3_w3tsi")]
+[node name="GolemHitbox" type="Area2D" parent="." unique_id=547892376]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=1997938195]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GolemHitbox" unique_id=1997938195]
 position = Vector2(40, -46.000004)
 scale = Vector2(0.93703926, 0.8247871)
 shape = SubResource("CircleShape2D_r0o18")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Killzone" unique_id=707477862]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="GolemHitbox" unique_id=707477862]
 position = Vector2(-18, -5)
 scale = Vector2(1.2502815, 1.1005046)
 shape = SubResource("CircleShape2D_r0o18")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Killzone" unique_id=1177794084]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="GolemHitbox" unique_id=1177794084]
 position = Vector2(15.999996, -5)
 scale = Vector2(1.2502815, 1.1005046)
 shape = SubResource("CircleShape2D_r0o18")
-
-[node name="Timer" type="Timer" parent="." unique_id=301256413]
 
 [node name="RayCastRight" type="RayCast2D" parent="." unique_id=1473104018]
 position = Vector2(0, -8)
@@ -170,4 +167,4 @@ target_position = Vector2(23, 0)
 position = Vector2(0, -8)
 target_position = Vector2(-23, 0)
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="GolemHitbox" to="." method="_on_golem_hitbox_body_entered"]

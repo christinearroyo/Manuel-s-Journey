@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://bl5gqtj1p5cw0" path="res://scripts/demon_boss.gd" id="1_cl6kp"]
 [ext_resource type="Texture2D" uid="uid://l0mxwhkn48cp" path="res://assets/sprites/Flying Demon 2D Pixel Art/Flying Demon 2D Pixel Art/Sprites/without_outline/FLYING.png" id="2_cl6kp"]
 [ext_resource type="Texture2D" uid="uid://d16fv8chjrbem" path="res://assets/sprites/Flying Demon 2D Pixel Art/Flying Demon 2D Pixel Art/Sprites/without_outline/IDLE.png" id="3_v22h1"]
-[ext_resource type="PackedScene" uid="uid://x2441twe6jak" path="res://scenes/killzone.tscn" id="5_v22h1"]
 [ext_resource type="Texture2D" uid="uid://batmjtec6yiom" path="res://assets/sprites/Health Bar/Pixel Bar Starter Pack/0-Health_Bar(Sheet).png" id="6_gbmsu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gbmsu"]
@@ -174,7 +173,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="demon boss" type="Area2D" unique_id=1892171907]
+[node name="demon boss" type="Node2D" unique_id=1043571526]
 script = ExtResource("1_cl6kp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=797204494]
@@ -183,13 +182,11 @@ sprite_frames = SubResource("SpriteFrames_hupbh")
 autoplay = "default"
 frame_progress = 0.68326557
 
-[node name="Killzone" parent="." unique_id=92160326 instance=ExtResource("5_v22h1")]
+[node name="DemonBossHitBox" type="Area2D" parent="." unique_id=1432861127]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=249051710]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DemonBossHitBox" unique_id=249051710]
 position = Vector2(-11, -25)
 shape = SubResource("CapsuleShape2D_gbmsu")
-
-[node name="Timer" type="Timer" parent="." unique_id=1501557796]
 
 [node name="RayCastRight" type="RayCast2D" parent="." unique_id=639500851]
 position = Vector2(-11, -52)
@@ -204,5 +201,4 @@ position = Vector2(-11, -69)
 scale = Vector2(1.4, 1.4)
 sprite_frames = SubResource("SpriteFrames_y05o1")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="DemonBossHitBox" to="." method="_on_demon_boss_hit_box_body_entered"]

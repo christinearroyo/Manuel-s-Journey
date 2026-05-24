@@ -1,0 +1,158 @@
+[gd_scene format=3 uid="uid://deplmj5qsqm0x"]
+
+[ext_resource type="Script" uid="uid://bmg4ixecmmh3g" path="res://scripts/fireball.gd" id="1_1gl40"]
+[ext_resource type="Texture2D" uid="uid://c0efu5swruoer" path="res://assets/sprites/Fire Effect 1/Fire Effect 1/Firebolt SpriteSheet.png" id="1_3s14c"]
+[ext_resource type="AudioStream" uid="uid://cj3lyu1bl0wtb" path="res://assets/sounds/tap.wav" id="3_cb14k"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_smehm"]
+height = 28.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cs1tg"]
+atlas = ExtResource("1_3s14c")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dvfe"]
+atlas = ExtResource("1_3s14c")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_giy8y"]
+atlas = ExtResource("1_3s14c")
+region = Rect2(336, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdfoy"]
+atlas = ExtResource("1_3s14c")
+region = Rect2(384, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhpqf"]
+atlas = ExtResource("1_3s14c")
+region = Rect2(432, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5jhy"]
+atlas = ExtResource("1_3s14c")
+region = Rect2(480, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_holxr"]
+atlas = ExtResource("1_3s14c")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mx1m4"]
+atlas = ExtResource("1_3s14c")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gjji"]
+atlas = ExtResource("1_3s14c")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2ulf"]
+atlas = ExtResource("1_3s14c")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6e8lb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cs1tg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2dvfe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_giy8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdfoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhpqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5jhy")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_holxr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mx1m4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gjji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2ulf")
+}],
+"loop": true,
+"name": &"launch",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_7kba2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hit:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_43lgj"]
+resource_name = "hitSound"
+length = 0.03
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hit:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vqoxj"]
+_data = {
+&"RESET": SubResource("Animation_7kba2"),
+&"hitSound": SubResource("Animation_43lgj")
+}
+
+[node name="Fireball" type="Node2D" unique_id=774263181]
+script = ExtResource("1_1gl40")
+
+[node name="FireHitbox" type="Area2D" parent="." unique_id=1880170642]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FireHitbox" unique_id=1716063295]
+position = Vector2(0, -3)
+rotation = 1.5707964
+scale = Vector2(0.3, 0.45)
+shape = SubResource("CapsuleShape2D_smehm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FireHitbox/CollisionShape2D" unique_id=1327552147]
+position = Vector2(-9.667, 4.333)
+rotation = -1.5707964
+scale = Vector2(0.8, 1.7)
+sprite_frames = SubResource("SpriteFrames_6e8lb")
+animation = &"hit"
+autoplay = "launch"
+frame = 5
+frame_progress = 1.0
+
+[node name="hit" type="AudioStreamPlayer2D" parent="." unique_id=924106220]
+stream = ExtResource("3_cb14k")
+bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1468144580]
+libraries/ = SubResource("AnimationLibrary_vqoxj")
+
+[connection signal="body_entered" from="FireHitbox" to="." method="_on_fire_hitbox_body_entered"]

@@ -2,10 +2,17 @@ extends CharacterBody2D
 
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
+var slime_hit = false
+var boss_slime_hit = false
+var golem_hit = false
+var demon_boss_hit = false
+var hell_boss_hit = false
+var health = 4
+var fireball_direction = 1
 
-signal healthChanged
-
+const FIREBALL = preload("uid://deplmj5qsqm0x")
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+<<<<<<< Updated upstream
 @onready var effects = $Effects
 @onready var hurtBox = $hurtBox
 @onready var hurtTimer = $hurtTimer
@@ -41,36 +48,93 @@ func _ready():
 
 	ui.set_inventory(inventory)
 
+=======
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var health_sprite: AnimatedSprite2D = $HealthSprite
+>>>>>>> Stashed changes
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+<<<<<<< Updated upstream
 
+=======
+		
+>>>>>>> Stashed changes
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		
+	if Input.is_action_just_pressed("move_left"):
+		fireball_direction = -1
+		
+	if Input.is_action_just_pressed("move_right"):
+		fireball_direction = 1
 
+	# Handle jump.
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions
 	var direction := Input.get_axis("move_left", "move_right")
-
+	
 	if direction > 0:
 		animated_sprite.flip_h = false
 	elif direction < 0:
 		animated_sprite.flip_h = true
-
-	if is_on_floor():
-		if direction == 0:
-			animated_sprite.play("idle")
+	
+	if Input.is_action_just_pressed("fire"):
+		var fireball = FIREBALL.instantiate()
+		if fireball_direction == 1:
+			fireball.position.x = position.x + 17
 		else:
-			animated_sprite.play("run")
+			fireball.get_node("FireHitbox/CollisionShape2D/AnimatedSprite2D").flip_h = true
+			fireball.position.x = position.x - 17
+		fireball.set_direction(fireball_direction)
+		fireball.position.y = position.y - 7
+		get_parent().add_child(fireball)
+	
+	if health == 0:
+		Engine.time_scale = 0.5
+		animated_sprite.play("death")
+		if animated_sprite.frame * delta == 3 * delta:
+			print("You Died")
+			Engine.time_scale = 1.0
+			get_tree().call_deferred("reload_current_scene")
 	else:
-		animated_sprite.play("jumping")
-
+		if slime_hit:
+			animated_sprite.play("hit")
+			if animated_sprite.frame * delta == 1 * delta:
+				animation_player.play("hitSound")
+				slime_hit = false
+		elif boss_slime_hit:
+			animated_sprite.play("hit")
+			if animated_sprite.frame * delta == 1 * delta:
+				animation_player.play("hitSound")
+				boss_slime_hit = false
+		elif golem_hit:
+			animated_sprite.play("hit")
+			if animated_sprite.frame * delta == 1 * delta:
+				animation_player.play("hitSound")
+				golem_hit = false
+		elif hell_boss_hit:
+			animated_sprite.play("hit")
+			if animated_sprite.frame * delta == 1 * delta:
+				animation_player.play("hitSound")
+				hell_boss_hit = false
+		else:
+			if is_on_floor():
+				if direction == 0:
+					animated_sprite.play("idle")
+				else:
+					animated_sprite.play("run")
+			else:
+				animated_sprite.play("jumping")
+		
 	if direction:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
 	move_and_slide()
 
+<<<<<<< Updated upstream
 	if not isHurt:
 		for area in hurtBox.get_overlapping_areas():
 			if area.name == "hitBox":
@@ -135,3 +199,29 @@ func use_item(item):
 
 	if item:
 		item.use(self)
+=======
+func damaged(damage):
+	health -= damage
+	if health < 1:
+		health = 0
+		animation_player.play("deathSound")
+	health_sprite.frame = health
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	var enemy = area.get_parent()
+	if area.name == "SlimeHitbox":
+		slime_hit = true
+		damaged(enemy.get_damage())
+	if area.name == "BossSlimeHitbox":
+		boss_slime_hit = true
+		damaged(enemy.get_damage())
+	if area.name == "GolemHitbox":
+		golem_hit = true
+		damaged(enemy.get_damage())
+	if area.name == "DemonBossHitBox":
+		demon_boss_hit = true
+		damaged(enemy.get_damage())
+	if area.name == "HellBossHitbox":
+		hell_boss_hit = true
+		damaged(enemy.get_damage())
+>>>>>>> Stashed changes

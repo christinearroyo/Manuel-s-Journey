@@ -1,12 +1,12 @@
-extends Area2D
-
-@onready var timer = $Timer
+extends Node2D
 
 const SPEED = 60
 const collision_distance = 85
 
 var direction = -1
-@onready var collision_shape_2d: CollisionShape2D = $Killzone/CollisionShape2D
+var damage = 4
+
+@onready var collision_shape_2d: CollisionShape2D = $HellBossHitbox/CollisionShape2D
 @onready var ray_cast_right = $RayCastRight
 @onready var ray_cast_left = $RayCastLeft
 @onready var animated_sprite = $AnimatedSprite2D
@@ -26,4 +26,6 @@ func _process(delta: float) -> void:
 		collision_shape_2d.disabled = false
 	if animated_sprite.frame * delta == 29 * delta:
 		collision_shape_2d.disabled = true
-	
+
+func get_damage():
+	return damage
