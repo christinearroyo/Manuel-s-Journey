@@ -8,6 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://taox0gvx2koi" path="res://assets/sprites/Inventory UI/sword.png" id="5_04naa"]
 [ext_resource type="Texture2D" uid="uid://cebmdn5jw4w3g" path="res://assets/sprites/shield.png" id="6_r1kbf"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_04naa"]
+atlas = ExtResource("6_r1kbf")
+region = Rect2(2, 2, 8, 9)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_g48gt"]
 animations = [{
 "frames": [{
@@ -28,7 +32,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_r1kbf")
+"texture": SubResource("AtlasTexture_04naa")
 }],
 "loop": true,
 "name": &"Shield",
@@ -128,7 +132,7 @@ offset_bottom = 40.0
 position = Vector2(475.00024, 165)
 scale = Vector2(5.6666665, 5.5625)
 sprite_frames = SubResource("SpriteFrames_g48gt")
-animation = &"Character Speed"
+animation = &"Shield"
 
 [node name="Name" type="Label" parent="Panel/Control" unique_id=1147010123]
 layout_mode = 0

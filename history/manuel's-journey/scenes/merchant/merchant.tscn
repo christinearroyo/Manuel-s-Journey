@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cuwp2n3n5mdn0"]
 
-[ext_resource type="Texture2D" uid="uid://cwtt4quferc8n" path="res://gamelogo.png" id="2_rluj3"]
+[ext_resource type="Texture2D" uid="uid://dwp7pcfkx75nw" path="res://assets/sprites/Character/idle.png" id="1_sxptm"]
 
 [sub_resource type="GDScript" id="GDScript_sxptm"]
 script/source = "extends Area2D
@@ -18,14 +18,14 @@ func _on_area_entered(area: Area2D) -> void:
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_12ke4"]
-radius = 6.0
-height = 22.0
+radius = 7.0
+height = 26.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7rnkl"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_rluj3")
+"texture": ExtResource("1_sxptm")
 }],
 "loop": true,
 "name": &"default",
@@ -36,10 +36,10 @@ animations = [{
 script = SubResource("GDScript_sxptm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1866258755]
-position = Vector2(-1, 1)
 shape = SubResource("CapsuleShape2D_12ke4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1134315829]
+scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_7rnkl")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
