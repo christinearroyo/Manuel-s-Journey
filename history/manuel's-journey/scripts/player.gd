@@ -10,10 +10,19 @@ var hell_boss_hit = false
 var health = 4
 var current_direction = 1
 var hurt = false
+var has_shield = true
+var shield = 4
 
 const FIREBALL = preload("uid://deplmj5qsqm0x")
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var sword: Node2D = $Sword
+@onready var shield_icon: AnimatedSprite2D = $ShieldIcon
+@onready var shield_sprite: AnimatedSprite2D = $ShieldSprite
+@onready var shield_sprite_2: AnimatedSprite2D = $ShieldSprite2
+@onready var shield_sprite_3: AnimatedSprite2D = $ShieldSprite3
+@onready var shield_sprite_4: AnimatedSprite2D = $ShieldSprite4
+@onready var shields: Array[AnimatedSprite2D] = [shield_icon,shield_sprite,shield_sprite_2,shield_sprite_3,shield_sprite_4]
+
 
 @export var inventory: Inventory = Inventory.new()
 
@@ -133,13 +142,37 @@ func use_item(item):
 
 	if item:
 		item.use(self)
+	
+func update_shield(current_shields:int):
+	for i in shields.size():
+		if i <= current_shields and current_shields != 0:
+			shields[i].visible = true
+		else:
+			shields[i].visible = false
+func damage_shield(damage):
+	shield -= damage
+	if shield < 1:
+		shield = 0
+		has_shield = false
+	update_shield(shield)
 		
-func damaged(damage):
+func damage_health(damage):
 	health -= damage
 	if health < 1:
 		health = 0
 		animation_player.play("deathSound")
 	health_sprite.frame = health
+	
+func damaged(damage):
+	if has_shield:
+		if (shield - damage) <= 0:
+			damage_health(damage - shield)
+			shield = 0
+			update_shield(shield)
+		else:
+			damage_shield(damage)
+	else:
+		damage_health(damage)
 	get_node("Hitbox").set_deferred("Monitoring", false)
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
@@ -167,7 +200,6 @@ func increase_health(health_increase):
 	if health > 4:
 		health = 4
 	health_sprite.frame = health
-
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "swing_right" or anim_name == "swing_left":

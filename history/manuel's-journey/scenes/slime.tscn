@@ -178,7 +178,7 @@ shape = SubResource("RectangleShape2D_p2gj0")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=817099463]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_v5wyi")
-animation = &"death"
+animation = &"run"
 autoplay = "run"
 
 [node name="RayCastRight" type="RayCast2D" parent="." unique_id=2022533769]

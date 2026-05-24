@@ -14,15 +14,14 @@ var damage = 1
 func _process(delta: float) -> void:
 	if health == 0:
 		animated_sprite.play("death")
-		if animated_sprite.frame * delta == 1 * delta:
-			queue_free()
-	elif ray_cast_right.is_colliding():
-		direction = -1
-		animated_sprite.flip_h = true
-	elif ray_cast_left.is_colliding():
-		direction = 1
-		animated_sprite.flip_h = false
-	position.x += direction * SPEED * delta
+	else:
+		if ray_cast_right.is_colliding():
+			direction = -1
+			animated_sprite.flip_h = true
+		elif ray_cast_left.is_colliding():
+			direction = 1
+			animated_sprite.flip_h = false
+		position.x += direction * SPEED * delta
 	
 
 func damaged(enemy_damage):
@@ -51,3 +50,5 @@ func get_damage():
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "hitSound":
 		get_node("SlimeHitbox").set_deferred("Monitoring", true)
+	if anim_name == "deathSound":
+		queue_free()
