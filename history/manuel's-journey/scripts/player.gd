@@ -12,13 +12,11 @@ var fireball_direction = 1
 
 const FIREBALL = preload("uid://deplmj5qsqm0x")
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var sword: Node2D = $Sword
 
 @export var inventory: Inventory = Inventory.new()
 
 @onready var ui = get_tree().get_first_node_in_group("ui_inventory")
-
-var isHurt: bool = false
-var spawnPosition: Vector2
 
 
 func _ready():
@@ -50,9 +48,12 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("move_left"):
 		fireball_direction = -1
+		sword.position.x = position.x - 7 * delta
+		sword.rotation = deg_to_rad(-94)
 		
 	if Input.is_action_just_pressed("move_right"):
 		fireball_direction = 1
+		
 
 	# Handle jump.
 	# Get the input direction and handle the movement/deceleration.
@@ -63,8 +64,15 @@ func _physics_process(delta: float) -> void:
 		animated_sprite.flip_h = false
 	elif direction < 0:
 		animated_sprite.flip_h = true
-	
-	if Input.is_action_just_pressed("fire"):
+		
+	if health == 0:
+		Engine.time_scale = 0.5
+		animated_sprite.play("death")
+		if animated_sprite.frame * delta == 3 * delta:
+			print("You Died")
+			Engine.time_scale = 1.0
+			get_tree().call_deferred("reload_current_scene")
+	elif Input.is_action_just_pressed("fire"):
 		var fireball = FIREBALL.instantiate()
 		if fireball_direction == 1:
 			fireball.position.x = position.x + 17
@@ -74,44 +82,35 @@ func _physics_process(delta: float) -> void:
 		fireball.set_direction(fireball_direction)
 		fireball.position.y = position.y - 7
 		get_parent().add_child(fireball)
-	
-	if health == 0:
-		Engine.time_scale = 0.5
-		animated_sprite.play("death")
-		if animated_sprite.frame * delta == 3 * delta:
-			print("You Died")
-			Engine.time_scale = 1.0
-			get_tree().call_deferred("reload_current_scene")
+	elif slime_hit:
+		animated_sprite.play("hit")
+		if animated_sprite.frame * delta == 1 * delta:
+			animation_player.play("hitSound")
+			slime_hit = false
+	elif boss_slime_hit:
+		animated_sprite.play("hit")
+		if animated_sprite.frame * delta == 1 * delta:
+			animation_player.play("hitSound")
+			boss_slime_hit = false
+	elif golem_hit:
+		animated_sprite.play("hit")
+		if animated_sprite.frame * delta == 1 * delta:
+			animation_player.play("hitSound")
+			golem_hit = false
+	elif hell_boss_hit:
+		animated_sprite.play("hit")
+		if animated_sprite.frame * delta == 1 * delta:
+			animation_player.play("hitSound")
+			hell_boss_hit = false
 	else:
-		if slime_hit:
-			animated_sprite.play("hit")
-			if animated_sprite.frame * delta == 1 * delta:
-				animation_player.play("hitSound")
-				slime_hit = false
-		elif boss_slime_hit:
-			animated_sprite.play("hit")
-			if animated_sprite.frame * delta == 1 * delta:
-				animation_player.play("hitSound")
-				boss_slime_hit = false
-		elif golem_hit:
-			animated_sprite.play("hit")
-			if animated_sprite.frame * delta == 1 * delta:
-				animation_player.play("hitSound")
-				golem_hit = false
-		elif hell_boss_hit:
-			animated_sprite.play("hit")
-			if animated_sprite.frame * delta == 1 * delta:
-				animation_player.play("hitSound")
-				hell_boss_hit = false
-		else:
-			if is_on_floor():
-				if direction == 0:
-					animated_sprite.play("idle")
-				else:
-					animated_sprite.play("run")
+		if is_on_floor():
+			if direction == 0:
+				animated_sprite.play("idle")
 			else:
-				animated_sprite.play("jumping")
-		
+				animated_sprite.play("run")
+		else:
+			animated_sprite.play("jumping")
+	
 	if direction:
 		velocity.x = direction * SPEED
 	else:
@@ -166,3 +165,9 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.name == "HellBossHitbox":
 		hell_boss_hit = true
 		damaged(enemy.get_damage())
+
+func increase_health(health_increase):
+	health += health_increase
+	if health > 4:
+		health = 4
+	health_sprite.frame = health

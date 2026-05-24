@@ -1,112 +1,17 @@
 [gd_scene format=3 uid="uid://ceahnnw1uix5q"]
 
-[ext_resource type="Script" uid="uid://c554n8eo4f5kr" path="res://scripts/sword.gd" id="1_n355p"]
-[ext_resource type="Resource" uid="uid://r3imv02es082" path="res://inventory/items/sword.tres" id="2_s4ec8"]
 [ext_resource type="Texture2D" uid="uid://taox0gvx2koi" path="res://assets/sprites/Inventory UI/sword.png" id="3_1yp6w"]
-[ext_resource type="AudioStream" uid="uid://c23ba6qf83qr7" path="res://assets/sounds/sword_slice.wav" id="4_k5whp"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_llfh3"]
-resource_local_to_scene = true
-size = Vector2(14, 14)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k5whp"]
+size = Vector2(2, 11)
 
-[sub_resource type="Animation" id="Animation_s4ec8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer2D:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
+[node name="SwordHitbox" type="Area2D" unique_id=754730872]
+position = Vector2(0, -7)
 
-[sub_resource type="Animation" id="Animation_1yp6w"]
-resource_name = "carrying"
-length = 0.3
-loop_mode = 2
-step = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [-0.7853981633974483, 0.0, 0.7853981633974483]
-}
-
-[sub_resource type="Animation" id="Animation_fnw8x"]
-resource_name = "swing"
-length = 0.33
-step = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.165, 0.33),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [-1.5707963267948966, 0.0, 1.5707963267948966]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer2D:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1yp6w"]
-_data = {
-&"RESET": SubResource("Animation_s4ec8"),
-&"carrying": SubResource("Animation_1yp6w"),
-&"swing": SubResource("Animation_fnw8x")
-}
-
-[node name="Sword" type="Node2D" unique_id=587787660]
-rotation = 2.340694
-script = ExtResource("1_n355p")
-itemRes = ExtResource("2_s4ec8")
-
-[node name="Area2D" type="Area2D" parent="." unique_id=989043014]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1653535943]
-rotation = 0.017466772
-shape = SubResource("RectangleShape2D_llfh3")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1183464107]
-libraries/ = SubResource("AnimationLibrary_1yp6w")
-autoplay = &"carrying"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1653535943]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_k5whp")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=703721378]
+rotation = 0.7853982
 texture = ExtResource("3_1yp6w")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=564473913]
-stream = ExtResource("4_k5whp")
