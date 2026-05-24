@@ -30,7 +30,6 @@
 [ext_resource type="Script" uid="uid://byfhhplvf8grw" path="res://scripts/portals/portal8.gd" id="17_e1j6l"]
 [ext_resource type="PackedScene" uid="uid://31dh5rcy0po6" path="res://scenes/inventory_gui.tscn" id="23_bt5mj"]
 [ext_resource type="Script" uid="uid://chjfnm7xpm4yy" path="res://scripts/canvas_layer.gd" id="23_e1j6l"]
-[ext_resource type="PackedScene" uid="uid://dxqupul6mk5s8" path="res://scenes/hearts_container.tscn" id="27_qnb83"]
 [ext_resource type="PackedScene" uid="uid://bjha4ccxqvacs" path="res://scenes/hotbar.tscn" id="32_wljb1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
@@ -814,16 +813,14 @@ offset_bottom = 68.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="heartsContainer" parent="CanvasLayer" unique_id=2141961703 instance=ExtResource("27_qnb83")]
-offset_right = 0.0
-offset_bottom = 0.0
-
 [node name="ScoreLabel4" type="Label" parent="CanvasLayer" unique_id=1697275050]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -150.0
-offset_bottom = 77.0
+offset_left = -136.0
+offset_top = -32.0
+offset_right = 14.0
+offset_bottom = 45.0
 grow_horizontal = 0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

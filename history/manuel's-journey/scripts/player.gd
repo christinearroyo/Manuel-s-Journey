@@ -91,12 +91,8 @@ func hurtByEnemy(area):
 func die():
 	# RESET PLAYER POSITION
 	global_position = spawnPosition
-	
-	# RESET HEALTH
 	currentHealth = maxHealth
 	healthChanged.emit(currentHealth)
-	
-	# STOP MOVEMENT
 	velocity = Vector2.ZERO
 
 func _on_hurt_box_area_entered(area):
