@@ -5,6 +5,5 @@ class_name InventoryItem
 @export var texture: Texture2D
 @export var maxAmountPrStack: int = 1
 
-
 func use(_player) -> void:
 	pass

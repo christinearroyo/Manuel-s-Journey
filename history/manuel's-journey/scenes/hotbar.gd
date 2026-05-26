@@ -43,7 +43,6 @@ func move_selector() -> void:
 	if selector:
 		selector.global_position = slots[currently_selected].global_position
 
-
 func _unhandled_input(event: InputEvent):
 
 	if inventory == null:
